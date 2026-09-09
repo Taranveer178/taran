@@ -16,7 +16,7 @@
 <!-- Favicons (Adaptive Light / Dark Mode) -->
 <link rel="icon" href="/img/Taranveer_logo_light.webp" media="(prefers-color-scheme: light)" type="image/webp">
 <link rel="icon" href="/img/Taranveer_logo_dark.webp" media="(prefers-color-scheme: dark)" type="image/webp">
-<link rel="apple-touch-icon" href="Taran/img/Taranveer_logo_dark.webp">
+<link rel="apple-touch-icon" href="/img/Taranveer_logo_dark.webp">
 
 <!-- Open Graph / Facebook / LinkedIn Social Preview -->
 <meta property="og:type" content="website">
@@ -55,6 +55,8 @@
   --accent-2:#06B6D4;
   --accent-warm:#F59E0B;
   --accent-grow:#0EA672;
+  --whatsapp:#25D366;
+  --whatsapp-dark:#1EBE5B;
   --shadow-glass:0 8px 32px rgba(31,38,68,0.08);
   --shadow-lift:0 20px 48px rgba(31,38,68,0.12);
   --radius-lg:28px;
@@ -153,9 +155,7 @@ section{
   font-size:17px;
 }
 
-/* ============================= */
-/* Reveal on scroll                */
-/* ============================= */
+/* Reveal on scroll */
 .reveal{
   opacity:0;
   transform:translateY(22px);
@@ -166,9 +166,7 @@ section{
   .reveal{opacity:1; transform:none; transition:none;}
 }
 
-/* ============================= */
-/* Glass utility                  */
-/* ============================= */
+/* Glass utility */
 .glass{
   background:var(--surface);
   backdrop-filter:blur(22px) saturate(160%);
@@ -177,9 +175,7 @@ section{
   box-shadow:var(--shadow-glass);
 }
 
-/* ============================= */
-/* Nav                            */
-/* ============================= */
+/* Nav */
 .nav-wrap{
   position:fixed;
   top:18px;
@@ -295,9 +291,7 @@ html.dark .logo-light-mode { display: none; }
   border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.05); color:#fff;
 }
 
-/* ============================= */
-/* Hero                           */
-/* ============================= */
+/* Hero */
 .hero{
   min-height:90svh;
   display:flex;
@@ -479,9 +473,7 @@ html.dark .logo-light-mode { display: none; }
 .hero-float-badge b{display:block; font-family:'Sora',sans-serif; font-size:15.5px; font-weight:700; line-height:1.2;}
 .hero-float-badge span{font-size:12px; color:var(--text-muted); line-height:1.3;}
 
-/* ============================= */
-/* Trust Bar Counter               */
-/* ============================= */
+/* Trust Bar Counter */
 .trust-bar {
   padding: 40px 0;
   background: var(--surface);
@@ -516,9 +508,7 @@ html.dark .logo-light-mode { display: none; }
   letter-spacing: 1px;
 }
 
-/* ============================= */
-/* About                          */
-/* ============================= */
+/* About */
 .about-grid{
   display:grid;
   grid-template-columns:1fr 1fr; 
@@ -584,9 +574,7 @@ html.dark .logo-light-mode { display: none; }
 .about-panel-value{font-weight:600; font-size:15px;}
 .about-panel-value span{display:block; font-weight:400; color:var(--text-muted); font-size:13.5px; margin-top:2px;}
 
-/* ============================= */
-/* Services                        */
-/* ============================= */
+/* Services */
 .services-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -617,9 +605,7 @@ html.dark .logo-light-mode { display: none; }
 .service-card h3{font-size:18px; font-weight:700; margin-bottom:12px;}
 .service-card p{font-size:15px; color:var(--text-muted); line-height: 1.6;}
 
-/* ============================= */
-/* Skills                          */
-/* ============================= */
+/* Skills */
 .skills-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -659,9 +645,7 @@ html.dark .logo-light-mode { display: none; }
 }
 .skill-card.learning .skill-pill{color:var(--accent-grow);}
 
-/* ============================= */
-/* Showcase (tabs + grid)          */
-/* ============================= */
+/* Showcase (tabs + grid) */
 .showcase-tabs{
   display:flex;
   gap:10px;
@@ -756,11 +740,8 @@ html.dark .logo-light-mode { display: none; }
   background:linear-gradient(100deg,var(--accent),var(--accent-2));
 }
 .showcase-card-arrow svg{width:18px;height:18px;}
-.showcase-note{margin-top:26px; font-size:13px; color:var(--text-faint); text-align:center;}
 
-/* ============================= */
-/* Projects                       */
-/* ============================= */
+/* Projects */
 .projects-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -866,9 +847,7 @@ html.dark .logo-light-mode { display: none; }
 .modal-features li svg{width:16px;height:16px; margin-top:4px; color:var(--accent-grow); flex-shrink:0;}
 .modal-stack{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px;}
 
-/* ============================= */
-/* Testimonial Auto Slider       */
-/* ============================= */
+/* Testimonial Auto Slider */
 .testi-section {
   overflow: hidden; 
   padding-bottom: 80px;
@@ -879,7 +858,6 @@ html.dark .logo-light-mode { display: none; }
   position: relative;
   padding: 20px 0;
 }
-/* Masks for smooth fade on edges */
 .testi-slider::before,
 .testi-slider::after {
   content: "";
@@ -932,9 +910,7 @@ html.dark .logo-light-mode { display: none; }
 .testi-name{font-weight:700; font-size:15px;}
 .testi-role{font-size:13px; color:var(--text-faint);}
 
-/* ============================= */
-/* Experience / Problem Solving    */
-/* ============================= */
+/* Experience / Problem Solving */
 .exp-list{display:flex; flex-direction:column; gap:20px;}
 .exp-card{
   border-radius:var(--radius-lg);
@@ -962,9 +938,7 @@ html.dark .logo-light-mode { display: none; }
 .exp-desc{font-size:15px; color:var(--text-muted); max-width:65ch; margin-bottom:18px; line-height: 1.6;}
 .exp-tags{display:flex; flex-wrap:wrap; gap:8px;}
 
-/* ============================= */
-/* Journey timeline                */
-/* ============================= */
+/* Journey timeline */
 .journey-track{
   position:relative;
   display:flex;
@@ -1010,9 +984,7 @@ html.dark .logo-light-mode { display: none; }
 .journey-step h4{font-size:16px; font-weight:700; margin-bottom:8px;}
 .journey-step p{font-size:14px; color:var(--text-muted); line-height: 1.5;}
 
-/* ============================= */
-/* Contact                        */
-/* ============================= */
+/* Contact */
 .contact-grid{
   display:grid;
   grid-template-columns:1fr 1.2fr; 
@@ -1087,9 +1059,7 @@ html.dark .logo-light-mode { display: none; }
 .form-success h3{font-size:22px; font-weight:800; margin-bottom:10px;}
 .form-success p{color:var(--text-muted); font-size:15px;}
 
-/* ============================= */
-/* Footer                         */
-/* ============================= */
+/* Footer */
 footer{
   padding:0;
   text-align:left;
@@ -1137,6 +1107,126 @@ footer{
 }
 .back-to-top:hover{background:linear-gradient(100deg,var(--accent),var(--accent-2)); color:#fff; transform:translateY(-4px); box-shadow: var(--shadow-glass);}
 .back-to-top svg{width:18px;height:18px;}
+
+/* ============================= */
+/* Floating WhatsApp Widget      */
+/* ============================= */
+.whatsapp-widget {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.whatsapp-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--whatsapp);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(.2,.7,.3,1), background 0.3s ease;
+}
+.whatsapp-btn:hover {
+  transform: scale(1.08) translateY(-2px);
+  background: var(--whatsapp-dark);
+}
+.whatsapp-btn svg {
+  width: 34px;
+  height: 34px;
+}
+.whatsapp-popup {
+  position: absolute;
+  bottom: 74px;
+  right: 0;
+  width: 320px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.9) translateY(10px);
+  transform-origin: bottom right;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+.whatsapp-popup.open {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateY(0);
+}
+.whatsapp-popup-header {
+  background: #5cbe6c;
+  padding: 18px 20px;
+  color: #fff;
+}
+.whatsapp-popup-header h4 {
+  margin: 0;
+  font-size: 16.5px;
+  font-weight: 700;
+  font-family: 'Sora', sans-serif;
+}
+.whatsapp-popup-header p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  opacity: 0.95;
+  line-height: 1.4;
+}
+.whatsapp-popup-body {
+  padding: 16px;
+  background: #f7f7f7;
+}
+.whatsapp-chat-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  text-decoration: none;
+  color: #12141C;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.whatsapp-chat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+.whatsapp-chat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #5cbe6c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+.whatsapp-chat-icon svg {
+  width: 26px;
+  height: 26px;
+}
+.whatsapp-chat-info h5 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #12141C;
+  font-family: 'Sora', sans-serif;
+}
+.whatsapp-chat-info span {
+  font-size: 12.5px;
+  color: #6A6E82;
+  margin-top: 2px;
+  display: block;
+}
 </style>
 </head>
 <body>
@@ -1145,9 +1235,7 @@ footer{
 <div class="nav-wrap">
   <nav class="nav">
     <a href="#home" class="nav-brand">
-      <!-- Light mode logo (dark text) -->
       <img src="/img/Taranveer_logo_light.webp" alt="Taranveer Singh" class="logo-light-mode">
-      <!-- Dark mode logo (light text) -->
       <img src="/img/Taranveer_logo_dark.webp" alt="Taranveer Singh" class="logo-dark-mode">
     </a>
     <div class="nav-links" id="navLinks">
@@ -1203,14 +1291,16 @@ footer{
         <a href="#contact" class="btn btn-secondary">Let's Work Together</a>
       </div>
       <div class="hero-socials">
-        <!-- REPLACE placeholder links below -->
-        <a href="[GITHUB_URL_HERE]" class="icon-btn" aria-label="GitHub" title="GitHub">
+        <a href="https://github.com/Taranveer178" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub" title="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5v-1.94c-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.36 1.12 2.94.85.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 015 0c1.9-1.33 2.74-1.05 2.74-1.05.56 1.42.21 2.47.1 2.73.65.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.82c0 .28.18.61.69.5A10.26 10.26 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg>
         </a>
-        <a href="[LINKEDIN_URL_HERE]" class="icon-btn" aria-label="LinkedIn" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/taranveer-singh-2445871b6/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="LinkedIn" title="LinkedIn">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5.001A2.5 2.5 0 014.98 3.5zM3 9h4v12H3V9zm7 0h3.8v1.63h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
         </a>
-        <a href="mailto:[EMAIL_HERE]" class="icon-btn" aria-label="Email">
+        <a href="https://www.instagram.com/veer.sidhu_" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="mailto:staranveer178@gmail.com" class="icon-btn" aria-label="Email" title="Email">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
         </a>
       </div>
@@ -1264,9 +1354,9 @@ footer{
       <div class="about-text reveal">
         <span class="eyebrow">About Me</span>
         <h2 style="font-size:clamp(26px,3.6vw,34px); font-weight:700; margin-bottom:22px;">A developer focused on solving real business problems.</h2>
-        <p>My name is <strong>Taranveer Singh</strong>. I am a <strong>Web Developer & Full-Stack PHP Developer</strong> with practical experience building business websites, education-management systems, custom dashboards, and data-driven web applications.</p>
-        <p>I don't just create UI — I work across the stack. From designing database schemas in MySQL, writing complex business logic in PHP and Laravel, handling API integrations, all the way to deploying to production via cPanel and Apache.</p>
-        <p>Whether it's building a quarter-based fee calculation module from scratch, or troubleshooting an existing legacy PHP system, I prioritize clean code and systems that actually work for the business using them.</p>
+        <p>My name is <strong>Taranveer Singh</strong>[cite: 5]. I am a <strong>Web Developer & Full-Stack PHP Developer</strong> with practical experience building business websites, education-management systems, custom dashboards, and data-driven web applications[cite: 5].</p>
+        <p>I don't just create UI — I work across the stack[cite: 5]. From designing database schemas in MySQL, writing complex business logic in PHP and Laravel, handling API integrations, all the way to deploying to production via cPanel and Apache[cite: 5].</p>
+        <p>Whether it's building a quarter-based fee calculation module from scratch, or troubleshooting an existing legacy PHP system, I prioritize clean code and systems that actually work for the business using them[cite: 5].</p>
         <div class="about-tags">
           <span class="about-tag">PHP</span>
           <span class="about-tag">Laravel</span>
@@ -1289,15 +1379,15 @@ footer{
         <div class="about-panel-row">
           <div class="about-panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5v-1.94c-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.36 1.12 2.94.85.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 015 0c1.9-1.33 2.74-1.05 2.74-1.05.56 1.42.21 2.47.1 2.73.65.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.82c0 .28.18.61.69.5A10.26 10.26 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg></div>
           <div>
-            <div class="about-panel-label">Open Source / Repositories</div>
-            <div class="about-panel-value">GitHub Org: Dukeinfo<span>Projects: SchoolERP & more</span></div>
+            <div class="about-panel-label">GitHub Profile</div>
+            <div class="about-panel-value">@Taranveer178<span>Projects: SchoolERP & more</span></div>
           </div>
         </div>
         <div class="about-panel-row">
           <div class="about-panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
           <div>
             <div class="about-panel-label">Location</div>
-            <div class="about-panel-value">Available for remote work<span>& contract opportunities</span></div>
+            <div class="about-panel-value">Punjab, India<span>Available for Remote & Contract</span></div>
           </div>
         </div>
       </div>
@@ -1430,7 +1520,7 @@ footer{
           <span class="stack-chip">Laravel</span><span class="stack-chip">PHP</span><span class="stack-chip">MySQL</span><span class="stack-chip">AJAX</span>
         </div>
         <div class="project-actions">
-          <a href="[GITHUB_URL_HERE]" class="project-link" onclick="event.stopPropagation()">GitHub</a>
+          <a href="https://github.com/Taranveer178" target="_blank" rel="noopener noreferrer" class="project-link" onclick="event.stopPropagation()">GitHub</a>
         </div>
       </article>
 
@@ -1445,7 +1535,7 @@ footer{
           <span class="stack-chip">PHP</span><span class="stack-chip">MySQL</span><span class="stack-chip">JavaScript</span>
         </div>
         <div class="project-actions">
-          <a href="[PROJECT_URL_HERE]" class="project-link" onclick="event.stopPropagation()">View Live</a>
+          <a href="https://github.com/Taranveer178" target="_blank" rel="noopener noreferrer" class="project-link" onclick="event.stopPropagation()">View Details</a>
         </div>
       </article>
 
@@ -1460,7 +1550,7 @@ footer{
           <span class="stack-chip">HTML</span><span class="stack-chip">CSS</span><span class="stack-chip">JavaScript</span>
         </div>
         <div class="project-actions">
-          <a href="[PROJECT_URL_HERE]" class="project-link" onclick="event.stopPropagation()">View Live</a>
+          <a href="https://github.com/Taranveer178" target="_blank" rel="noopener noreferrer" class="project-link" onclick="event.stopPropagation()">View Details</a>
         </div>
       </article>
 
@@ -1475,7 +1565,7 @@ footer{
           <span class="stack-chip">PHP</span><span class="stack-chip">MySQL</span><span class="stack-chip">JavaScript</span>
         </div>
         <div class="project-actions">
-          <a href="[PROJECT_URL_HERE]" class="project-link" onclick="event.stopPropagation()">View Live</a>
+          <a href="https://github.com/Taranveer178" target="_blank" rel="noopener noreferrer" class="project-link" onclick="event.stopPropagation()">View Details</a>
         </div>
       </article>
 
@@ -1490,7 +1580,7 @@ footer{
           <span class="stack-chip">HTML</span><span class="stack-chip">CSS</span><span class="stack-chip">SEO Integration</span>
         </div>
         <div class="project-actions">
-          <a href="[PROJECT_URL_HERE]" class="project-link" onclick="event.stopPropagation()">View Live</a>
+          <a href="https://github.com/Taranveer178" target="_blank" rel="noopener noreferrer" class="project-link" onclick="event.stopPropagation()">View Details</a>
         </div>
       </article>
 
@@ -1505,7 +1595,7 @@ footer{
           <span class="stack-chip">PHP</span><span class="stack-chip">Apache Config</span><span class="stack-chip">CSS</span>
         </div>
         <div class="project-actions">
-          <a href="[PROJECT_URL_HERE]" class="project-link" onclick="event.stopPropagation()">View Live</a>
+          <a href="https://github.com/Taranveer178" target="_blank" rel="noopener noreferrer" class="project-link" onclick="event.stopPropagation()">View Details</a>
         </div>
       </article>
 
@@ -1529,7 +1619,6 @@ footer{
   </div>
   
   <div class="testi-slider reveal">
-    <!-- Duplicate cards to create an infinite marquee effect -->
     <div class="testi-track" id="testiTrack">
       
       <!-- Slide Set 1 -->
@@ -1749,21 +1838,24 @@ footer{
         <div class="contact-info-list">
           <div class="contact-info-item">
             <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></div>
-            <span>[EMAIL_HERE]</span>
+            <span>staranveer178@gmail.com</span>
           </div>
           <div class="contact-info-item">
             <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.68 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0122 16.92z"/></svg></div>
-            <span>[WHATSAPP/PHONE_HERE]</span>
+            <span>+91 62839 45840</span>
           </div>
         </div>
         <div class="contact-socials-alt">
-          <a href="[GITHUB_URL_HERE]" class="icon-btn" aria-label="GitHub">
+          <a href="https://github.com/Taranveer178" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5v-1.94c-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.36 1.12 2.94.85.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 015 0c1.9-1.33 2.74-1.05 2.74-1.05.56 1.42.21 2.47.1 2.73.65.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.82c0 .28.18.61.69.5A10.26 10.26 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg>
           </a>
-          <a href="[LINKEDIN_URL_HERE]" class="icon-btn" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/taranveer-singh-2445871b6/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5.001A2.5 2.5 0 014.98 3.5zM3 9h4v12H3V9zm7 0h3.8v1.63h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
           </a>
-          <a href="mailto:[EMAIL_HERE]" class="icon-btn" aria-label="Email">
+          <a href="https://www.instagram.com/veer.sidhu_" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="mailto:staranveer178@gmail.com" class="icon-btn" aria-label="Email">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
           </a>
         </div>
@@ -1807,21 +1899,51 @@ footer{
   </div>
 </section>
 
+<!-- ============================= FLOATING WHATSAPP WIDGET ============================= -->
+<div class="whatsapp-widget">
+  <div class="whatsapp-popup" id="whatsappPopup">
+    <div class="whatsapp-popup-header">
+      <h4>Start a Conversation</h4>
+      <p>Hi! Click below to chat on WhatsApp</p>
+    </div>
+    <div class="whatsapp-popup-body">
+      <a href="https://wa.me/916283945840?text=Hi%20Taranveer,%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect!" target="_blank" rel="noopener noreferrer" class="whatsapp-chat-card">
+        <div class="whatsapp-chat-icon">
+          <svg viewBox="0 0 32 32" fill="currentColor">
+            <path d="M16 0C7.163 0 0 7.163 0 16c0 2.825.738 5.488 2.038 7.788L.075 31.925l8.35-2.188A15.938 15.938 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.338a13.29 13.29 0 01-6.788-1.863l-.487-.287-5.038 1.325 1.35-4.912-.313-.5a13.3 13.3 0 1111.275 6.237zm7.313-9.988c-.4-.2-2.375-1.175-2.738-1.3-.375-.138-.65-.2-.925.2s-1.063 1.3-1.3 1.575-.487.313-.888.113a11.16 11.16 0 01-3.287-2.025 12.338 12.338 0 01-2.275-2.838c-.237-.4 0-.625.2-.825.175-.175.4-.462.6-.687.2-.238.263-.4.4-.663.138-.275.075-.5-.037-.7s-.925-2.225-1.263-3.05c-.337-.8-.675-.7-.925-.712h-.788c-.275 0-.712.1-1.088.513s-1.425 1.387-1.425 3.388 1.463 3.938 1.663 4.2 2.875 4.388 6.963 6.15c.975.425 1.738.675 2.338.863.988.313 1.888.263 2.6.163.788-.113 2.375-.975 2.713-1.913.338-.938.338-1.75.238-1.913-.1-.162-.375-.262-.775-.462z"/>
+          </svg>
+        </div>
+        <div class="whatsapp-chat-info">
+          <h5>Taranveer Singh</h5>
+          <span>Chat on WhatsApp</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  <button class="whatsapp-btn" id="whatsappToggle" aria-label="Open WhatsApp chat">
+    <svg viewBox="0 0 32 32" fill="currentColor">
+      <path d="M16 0C7.163 0 0 7.163 0 16c0 2.825.738 5.488 2.038 7.788L.075 31.925l8.35-2.188A15.938 15.938 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.338a13.29 13.29 0 01-6.788-1.863l-.487-.287-5.038 1.325 1.35-4.912-.313-.5a13.3 13.3 0 1111.275 6.237zm7.313-9.988c-.4-.2-2.375-1.175-2.738-1.3-.375-.138-.65-.2-.925.2s-1.063 1.3-1.3 1.575-.487.313-.888.113a11.16 11.16 0 01-3.287-2.025 12.338 12.338 0 01-2.275-2.838c-.237-.4 0-.625.2-.825.175-.175.4-.462.6-.687.2-.238.263-.4.4-.663.138-.275.075-.5-.037-.7s-.925-2.225-1.263-3.05c-.337-.8-.675-.7-.925-.712h-.788c-.275 0-.712.1-1.088.513s-1.425 1.387-1.425 3.388 1.463 3.938 1.663 4.2 2.875 4.388 6.963 6.15c.975.425 1.738.675 2.338.863.988.313 1.888.263 2.6.163.788-.113 2.375-.975 2.713-1.913.338-.938.338-1.75.238-1.913-.1-.162-.375-.262-.775-.462z"/>
+    </svg>
+  </button>
+</div>
+
 <footer>
   <div class="container footer-top">
     <div class="footer-grid">
       <div>
         <a href="#home" class="footer-brand" style="margin-bottom: 8px;">
-          <!-- Using Dark Mode Logo specifically for Footer contrast -->
           <img src="/img/Taranveer_logo_light.webp" alt="Taranveer Singh" style="height: 22px;">
         </a>
-        <p class="footer-about">Full-Stack PHP Developer building reliable, scalable and business-focused web applications using PHP, Laravel, and MySQL.</p>
+        <p class="footer-about">Full-Stack PHP Developer building reliable, scalable and business-focused web applications using PHP, Laravel, and MySQL[cite: 5].</p>
         <div class="footer-socials">
-          <a href="[GITHUB_URL_HERE]" class="icon-btn" aria-label="GitHub">
+          <a href="https://github.com/Taranveer178" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5v-1.94c-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.36 1.12 2.94.85.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 015 0c1.9-1.33 2.74-1.05 2.74-1.05.56 1.42.21 2.47.1 2.73.65.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.82c0 .28.18.61.69.5A10.26 10.26 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg>
           </a>
-          <a href="[LINKEDIN_URL_HERE]" class="icon-btn" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/taranveer-singh-2445871b6/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5.001A2.5 2.5 0 014.98 3.5zM3 9h4v12H3V9zm7 0h3.8v1.63h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/veer.sidhu_" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
         </div>
       </div>
@@ -1853,11 +1975,15 @@ footer{
         <div class="footer-heading">Contact</div>
         <div class="footer-contact-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
-          <span>[EMAIL_HERE]</span>
+          <span>staranveer178@gmail.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.68 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0122 16.92z"/></svg>
+          <span>+91 62839 45840</span>
         </div>
         <div class="footer-contact-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Available for Remote Work</span>
+          <span>Punjab, India</span>
         </div>
       </div>
     </div>
@@ -1875,7 +2001,7 @@ footer{
 </footer>
 
 <script>
-// ---------- Theme ----------
+// Theme
 const root = document.documentElement;
 const themeToggle = document.getElementById('themeToggle');
 const iconSun = document.getElementById('iconSun');
@@ -1900,7 +2026,7 @@ function setTheme(mode){
   if(saved){
     setTheme(saved);
   } else {
-    setTheme('dark'); // Default to dark mode
+    setTheme('dark');
   }
 })();
 
@@ -1908,7 +2034,7 @@ themeToggle.addEventListener('click', () => {
   setTheme(root.classList.contains('dark') ? 'light' : 'dark');
 });
 
-// ---------- Mobile menu ----------
+// Mobile menu
 const menuBtn = document.getElementById('menuBtn');
 const mobilePanel = document.getElementById('mobilePanel');
 const mobileClose = document.getElementById('mobileClose');
@@ -1917,7 +2043,22 @@ menuBtn.addEventListener('click', () => mobilePanel.classList.add('open'));
 mobileClose.addEventListener('click', () => mobilePanel.classList.remove('open'));
 mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobilePanel.classList.remove('open')));
 
-// ---------- Scroll reveal ----------
+// Floating WhatsApp popup toggle
+const whatsappToggle = document.getElementById('whatsappToggle');
+const whatsappPopup = document.getElementById('whatsappPopup');
+
+whatsappToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  whatsappPopup.classList.toggle('open');
+});
+
+document.addEventListener('click', (e) => {
+  if (!whatsappPopup.contains(e.target) && e.target !== whatsappToggle) {
+    whatsappPopup.classList.remove('open');
+  }
+});
+
+// Scroll reveal
 function observeReveal(els){
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1931,7 +2072,7 @@ function observeReveal(els){
 }
 observeReveal(document.querySelectorAll('.reveal'));
 
-// ---------- Counter Animation (Trust Bar) ----------
+// Counter Animation (Trust Bar)
 const counters = document.querySelectorAll('.counter');
 const counterIO = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -1939,7 +2080,7 @@ const counterIO = new IntersectionObserver(entries => {
       const target = +entry.target.getAttribute('data-target');
       const hasPlus = entry.target.getAttribute('data-plus') === 'true';
       let count = 0;
-      const speed = target / 60; // Adjust for duration
+      const speed = target / 60;
       
       const updateCount = () => {
         count += speed;
@@ -1957,7 +2098,7 @@ const counterIO = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 counters.forEach(c => counterIO.observe(c));
 
-// ---------- Active nav link on scroll ----------
+// Active nav link on scroll
 const sections = document.querySelectorAll('section[id]');
 const navAnchors = document.querySelectorAll('.nav-links a');
 const navIO = new IntersectionObserver((entries) => {
@@ -1973,7 +2114,7 @@ const navIO = new IntersectionObserver((entries) => {
 }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
 sections.forEach(s => navIO.observe(s));
 
-// ---------- Project modal ----------
+// Project modal
 const projectData = {
   p1: {
     title: 'SchoolERP',
@@ -1986,8 +2127,8 @@ const projectData = {
       'Marketing dashboard covering lead management, visit scheduling, and status notes.'
     ],
     stack: ['Laravel', 'PHP', 'MySQL', 'Blade', 'JavaScript', 'Bootstrap', 'AJAX'],
-    github: '[GITHUB_URL_HERE]',
-    live: '[PROJECT_URL_HERE]'
+    github: 'https://github.com/Taranveer178',
+    live: 'https://taranveer.in/#projects'
   },
   p2: {
     title: 'Shirtee',
@@ -1999,8 +2140,8 @@ const projectData = {
       'Business-oriented web development practices.'
     ],
     stack: ['PHP', 'MySQL', 'HTML', 'CSS', 'JavaScript'],
-    github: '[GITHUB_URL_HERE]',
-    live: '[PROJECT_URL_HERE]'
+    github: 'https://github.com/Taranveer178',
+    live: 'https://taranveer.in/#projects'
   },
   p3: {
     title: 'Brew House Cafe',
@@ -2012,8 +2153,8 @@ const projectData = {
       'Lightweight vanilla JavaScript for frontend interactions.'
     ],
     stack: ['HTML', 'CSS', 'JavaScript'],
-    github: '[GITHUB_URL_HERE]',
-    live: '[PROJECT_URL_HERE]'
+    github: 'https://github.com/Taranveer178',
+    live: 'https://taranveer.in/#projects'
   },
   p4: {
     title: 'TownTalk',
@@ -2025,8 +2166,8 @@ const projectData = {
       'Client-side interactions and form handling via JavaScript.'
     ],
     stack: ['PHP', 'MySQL', 'HTML', 'CSS', 'JavaScript'],
-    github: '[GITHUB_URL_HERE]',
-    live: '[PROJECT_URL_HERE]'
+    github: 'https://github.com/Taranveer178',
+    live: 'https://taranveer.in/#projects'
   },
   p5: {
     title: 'ResearchHive',
@@ -2038,8 +2179,8 @@ const projectData = {
       'Clean HTML semantic tags and lightweight CSS.'
     ],
     stack: ['HTML', 'CSS', 'SEO Structure'],
-    github: '[GITHUB_URL_HERE]',
-    live: '[PROJECT_URL_HERE]'
+    github: 'https://github.com/Taranveer178',
+    live: 'https://taranveer.in/#projects'
   },
   p6: {
     title: 'Ashiana Public School',
@@ -2051,8 +2192,8 @@ const projectData = {
       'Responsive design adapting to all device resolutions.'
     ],
     stack: ['PHP', 'Apache Config', 'HTML', 'CSS'],
-    github: '[GITHUB_URL_HERE]',
-    live: '[PROJECT_URL_HERE]'
+    github: 'https://github.com/Taranveer178',
+    live: 'https://taranveer.in/#projects'
   }
 };
 
@@ -2078,7 +2219,7 @@ function openModal(id){
       ${p.stack.map(s => `<span class="stack-chip">${s}</span>`).join('')}
     </div>
     <div class="project-actions" style="margin-top: 24px;">
-      <a href="${p.github}" class="project-link">GitHub Repo</a>
+      <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">GitHub Repo</a>
       <a href="${p.live}" class="project-link">View Project</a>
     </div>
   `;
@@ -2087,7 +2228,6 @@ function openModal(id){
   document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
 }
 
-// Function dynamically bound to showcase tab click
 window.openShowcaseModal = function(title, tag) {
   modalContent.innerHTML = `
     <button class="modal-close" id="modalCloseBtn" aria-label="Close">
@@ -2100,7 +2240,7 @@ window.openShowcaseModal = function(title, tag) {
       <span class="stack-chip">${tag}</span>
     </div>
     <div class="project-actions" style="margin-top: 24px;">
-      <a href="[PROJECT_URL_HERE]" class="project-link">View Live Project</a>
+      <a href="https://taranveer.in/#projects" class="project-link">View Live Project</a>
     </div>
   `;
   overlay.classList.add('open');
@@ -2119,7 +2259,7 @@ document.querySelectorAll('.project-card').forEach(card => {
 overlay.addEventListener('click', (e) => { if(e.target === overlay) closeModal(); });
 document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
 
-// ---------- Showcase tabs ----------
+// Showcase tabs
 const showcaseData = [
   { id:'laravel',     label:'Laravel',     tag:'Laravel',      items:['LMS Platform','Multi-vendor Marketplace','Property Rental Platform','Job Board Application','Restaurant Ordering System','Healthcare Booking App','SaaS Subscription App','Blogging Platform','Freelance Marketplace'] },
   { id:'php',         label:'Core PHP',    tag:'Core PHP',     items:['Custom Admin Dashboard','Inventory Management System','Appointment Booking System','Employee Management Portal','Custom CMS Build','Invoice Generator App','Membership Portal','Custom Contact Database','Event Registration System'] },
@@ -2169,7 +2309,7 @@ function setShowcaseTab(tabId){
 
 setShowcaseTab(showcaseData[0].id);
 
-// ---------- Contact form (front-end demo) ----------
+// Contact form
 const contactForm = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');
 
