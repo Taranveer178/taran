@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Primary Meta Tags -->
-<title>Taranveer Singh — Full-Stack PHP & Laravel Developer | Web Development</title>
-<meta name="title" content="Taranveer Singh — Full-Stack PHP & Laravel Developer | Web Development">
+<title>Taranveer Singh — Full-Stack PHP & Laravel Developer</title>
+<meta name="title" content="Taranveer Singh — Full-Stack PHP & Laravel Developer">
 <meta name="description" content="Portfolio of Taranveer Singh, a Full-Stack PHP & Laravel Developer specializing in custom business web applications, ERPs, CRM systems, database architecture, and responsive frontend design.">
 <meta name="keywords" content="Taranveer Singh, PHP Developer, Laravel Developer, Full Stack Developer, Web Developer, MySQL, Web Development, SchoolERP, Custom PHP">
 <meta name="author" content="Taranveer Singh">
@@ -14,8 +14,8 @@
 <link rel="canonical" href="https://taranveer.in/">
 
 <!-- Favicons (Adaptive Light / Dark Mode) -->
-<link rel="icon" href="/img/Taranveer_logo_light.webp" media="(prefers-color-scheme: light)" type="image/webp">
-<link rel="icon" href="/img/Taranveer_logo_dark.webp" media="(prefers-color-scheme: dark)" type="image/webp">
+<link rel="icon" href="/img/Taranveer_logo_dark.webp" media="(prefers-color-scheme: light)" type="image/webp">
+<link rel="icon" href="/img/Taranveer_logo_light.webp" media="(prefers-color-scheme: dark)" type="image/webp">
 <link rel="apple-touch-icon" href="/img/Taranveer_logo_dark.webp">
 
 <!-- Open Graph / Facebook / LinkedIn Social Preview -->
@@ -34,6 +34,7 @@
 <meta name="twitter:title" content="Taranveer Singh — Full-Stack PHP & Laravel Developer">
 <meta name="twitter:description" content="Explore custom web applications, enterprise ERPs, and database-driven solutions built with PHP, Laravel, MySQL, and modern JavaScript.">
 <meta name="twitter:image" content="https://taranveer.in/img/social-preview.webp">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -508,23 +509,29 @@ html.dark .logo-light-mode { display: none; }
   letter-spacing: 1px;
 }
 
-/* About */
+/* About Grid - Balanced Heights & Alignment */
 .about-grid{
   display:grid;
   grid-template-columns:1fr 1fr; 
-  gap:64px;
-  align-items:center; 
+  gap:56px;
+  align-items:stretch; 
 }
-@media (max-width:860px){ .about-grid{grid-template-columns:1fr; gap:40px;} }
+@media (max-width:860px){ .about-grid{grid-template-columns:1fr; gap:36px;} }
+.about-text{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
 .about-text p{
-  font-size:17px;
+  font-size:16px;
   color:var(--text-muted);
-  margin-bottom:18px;
-  max-width:60ch;
+  margin-bottom:14px;
+  max-width:54ch;
+  line-height:1.6;
 }
 .about-text strong{color:var(--text); font-weight:600;}
 .about-tags{
-  display:flex; flex-wrap:wrap; gap:8px; margin-top:24px;
+  display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;
 }
 .about-tag{
   font-size:13px;
@@ -910,7 +917,7 @@ html.dark .logo-light-mode { display: none; }
 .testi-name{font-weight:700; font-size:15px;}
 .testi-role{font-size:13px; color:var(--text-faint);}
 
-/* Experience / Problem Solving */
+/* Experience */
 .exp-list{display:flex; flex-direction:column; gap:20px;}
 .exp-card{
   border-radius:var(--radius-lg);
@@ -1080,6 +1087,11 @@ footer{
   font-family:'Sora',sans-serif; font-weight:800; font-size:22px;
   color:var(--text); margin-bottom:16px; display:inline-block;
 }
+.footer-brand img {
+  height: 38px !important;
+  width: auto;
+  display: block;
+}
 .footer-about{max-width:300px; font-size:14.5px; line-height:1.7; margin-bottom:24px;}
 .footer-socials{display:flex; gap:12px;}
 .footer-heading{font-size:15px; font-weight:800; color:var(--text); margin-bottom:20px;}
@@ -1244,7 +1256,7 @@ footer{
       <a href="#services">Services</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
-      <a href="#problem-solving">Problem Solving</a>
+      <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </div>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -1266,7 +1278,7 @@ footer{
   <a href="#services">Services</a>
   <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
-  <a href="#problem-solving">Problem Solving</a>
+  <a href="#experience">Experience</a>
   <a href="#contact">Contact</a>
 </div>
 
@@ -1353,10 +1365,9 @@ footer{
     <div class="about-grid">
       <div class="about-text reveal">
         <span class="eyebrow">About Me</span>
-        <h2 style="font-size:clamp(26px,3.6vw,34px); font-weight:700; margin-bottom:22px;">A developer focused on solving real business problems.</h2>
-        <p>My name is <strong>Taranveer Singh</strong>[cite: 5]. I am a <strong>Web Developer & Full-Stack PHP Developer</strong> with practical experience building business websites, education-management systems, custom dashboards, and data-driven web applications[cite: 5].</p>
-        <p>I don't just create UI — I work across the stack[cite: 5]. From designing database schemas in MySQL, writing complex business logic in PHP and Laravel, handling API integrations, all the way to deploying to production via cPanel and Apache[cite: 5].</p>
-        <p>Whether it's building a quarter-based fee calculation module from scratch, or troubleshooting an existing legacy PHP system, I prioritize clean code and systems that actually work for the business using them[cite: 5].</p>
+        <h2 style="font-size:clamp(26px,3.6vw,34px); font-weight:700; margin-bottom:18px;">Full-stack developer building real business solutions.</h2>
+        <p>I'm <strong>Taranveer Singh</strong>, a Full-Stack PHP & Laravel Developer building reliable ERPs, management systems, and web applications.</p>
+        <p>I work across the entire stack—from database design in MySQL and custom business logic in PHP/Laravel, to interactive frontends and production cPanel/server deployments.</p>
         <div class="about-tags">
           <span class="about-tag">PHP</span>
           <span class="about-tag">Laravel</span>
@@ -1364,7 +1375,6 @@ footer{
           <span class="about-tag">JavaScript</span>
           <span class="about-tag">REST APIs</span>
           <span class="about-tag">AJAX</span>
-          <span class="about-tag">DataTables</span>
         </div>
       </div>
 
@@ -1735,52 +1745,32 @@ footer{
   </div>
 </section>
 
-<!-- ============================= PROBLEM SOLVING ============================= -->
-<section id="problem-solving" style="background:var(--bg-soft);">
+<!-- ============================= EXPERIENCE ============================= -->
+<section id="experience" style="background:var(--bg-soft);">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Engineering</span>
-      <h2>Problem Solving & Infrastructure</h2>
-      <p>I don't just write code; I debug production issues, manage deployments, and engineer backend logic for business requirements.</p>
+      <span class="eyebrow">Work History</span>
+      <h2>Professional Experience</h2>
+      <p>Hands-on development building and maintaining production web applications and client platforms.</p>
     </div>
     <div class="exp-list">
       <div class="exp-card glass reveal">
         <div>
-          <div class="exp-role" style="font-size:18px;">Backend Logic & Architecture</div>
-          <div class="exp-status"><span class="status-dot" style="background:var(--accent); width:8px; height:8px;"></span>Business Applications</div>
+          <div class="exp-period">Sept 2025 — Present</div>
+          <div class="exp-status"><span class="status-dot" style="background:var(--accent-grow); width:8px; height:8px;"></span>Current Role</div>
         </div>
         <div>
-          <p class="exp-desc">Extensive experience writing complex business logic. In projects like SchoolERP, I handled quarter-based fee logic, tuition/transport calculations, payment tracking, and handling previous balance workflows. I regularly fix complex JavaScript/DataTables bugs and work with legacy PHP codebases.</p>
+          <div class="exp-role">Web Developer</div>
+          <div class="exp-org">Binary Data Pvt Ltd — Mohali, Punjab</div>
+          <p class="exp-desc">Developing, maintaining, and deploying scalable web solutions across multiple platforms. Building backend systems in PHP and Laravel, designing relational MySQL database architectures, creating interactive frontend experiences, and handling live server deployments and debugging.</p>
           <div class="exp-tags">
-            <span class="stack-chip">Database Queries</span><span class="stack-chip">Fee Algorithms</span><span class="stack-chip">Legacy Integration</span>
-            <span class="stack-chip">Laravel Migrations</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="exp-card glass reveal">
-        <div>
-          <div class="exp-role" style="font-size:18px;">Servers, Deployment & Debugging</div>
-          <div class="exp-status"><span class="status-dot" style="background:var(--accent-2); width:8px; height:8px;"></span>Production Environments</div>
-        </div>
-        <div>
-          <p class="exp-desc">I have hands-on experience troubleshooting real production issues. This includes fixing MySQL connection timeouts, adjusting Apache/PHP configurations, managing file permissions via cPanel, writing `.htaccess` rules for URL rewriting, and using Git/GitHub workflows to deploy code safely.</p>
-          <div class="exp-tags">
-            <span class="stack-chip">cPanel</span><span class="stack-chip">Apache configs</span><span class="stack-chip">.htaccess</span>
-            <span class="stack-chip">Server Debugging</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="exp-card glass reveal">
-        <div>
-          <div class="exp-role" style="font-size:18px;">Digital Marketing Integration</div>
-          <div class="exp-status"><span class="status-dot" style="background:var(--accent-warm); width:8px; height:8px;"></span>Secondary Expertise</div>
-        </div>
-        <div>
-          <p class="exp-desc">Understanding the business side of web applications. I integrate marketing requirements like Meta Ads tracking, build marketing dashboards (lead management, visit scheduling), and ensure websites are structurally sound for SEO.</p>
-          <div class="exp-tags">
-            <span class="stack-chip">Lead Management</span><span class="stack-chip">Meta Ads</span><span class="stack-chip">SEO Structure</span>
+            <span class="stack-chip">PHP</span>
+            <span class="stack-chip">Laravel</span>
+            <span class="stack-chip">MySQL</span>
+            <span class="stack-chip">JavaScript</span>
+            <span class="stack-chip">AJAX</span>
+            <span class="stack-chip">WordPress</span>
+            <span class="stack-chip">cPanel Deployment</span>
           </div>
         </div>
       </div>
@@ -1855,14 +1845,11 @@ footer{
           <a href="https://www.instagram.com/veer.sidhu_" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="Instagram">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
-          <a href="mailto:staranveer178@gmail.com" class="icon-btn" aria-label="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
-          </a>
         </div>
       </div>
 
       <div class="contact-form-wrap">
-        <form id="contactForm" novalidate>
+        <form action="https://formsubmit.co/staranveer178@gmail.com" method="POST" id="contactForm" novalidate>
           <div class="form-row">
             <div class="form-field">
               <label for="cf-name">Name</label>
@@ -1932,9 +1919,9 @@ footer{
     <div class="footer-grid">
       <div>
         <a href="#home" class="footer-brand" style="margin-bottom: 8px;">
-          <img src="/img/Taranveer_logo_light.webp" alt="Taranveer Singh" style="height: 22px;">
+          <img src="/img/Taranveer_logo_light.webp" alt="Taranveer Singh" style="height: 38px; width: auto;">
         </a>
-        <p class="footer-about">Full-Stack PHP Developer building reliable, scalable and business-focused web applications using PHP, Laravel, and MySQL[cite: 5].</p>
+        <p class="footer-about">Full-Stack PHP Developer building reliable, scalable and business-focused web applications using PHP, Laravel, and MySQL.</p>
         <div class="footer-socials">
           <a href="https://github.com/Taranveer178" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5v-1.94c-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.36 1.12 2.94.85.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 015 0c1.9-1.33 2.74-1.05 2.74-1.05.56 1.42.21 2.47.1 2.73.65.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.82c0 .28.18.61.69.5A10.26 10.26 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg>
@@ -1955,7 +1942,7 @@ footer{
           <a href="#services">Services</a>
           <a href="#skills">Stack</a>
           <a href="#projects">Projects</a>
-          <a href="#problem-solving">Problem Solving</a>
+          <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
         </div>
       </div>
@@ -1978,11 +1965,11 @@ footer{
           <span>staranveer178@gmail.com</span>
         </div>
         <div class="footer-contact-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.68 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0122 16.92z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <span>+91 62839 45840</span>
         </div>
         <div class="footer-contact-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.68 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0122 16.92z"/></svg>
           <span>Punjab, India</span>
         </div>
       </div>
@@ -1992,7 +1979,7 @@ footer{
   <div class="container footer-bottom">
     <span>© 2026 Taranveer Singh. Built with HTML, CSS &amp; JavaScript.</span>
     <div class="footer-bottom-links">
-      <a href="#home">Back to top</a>
+      
     </div>
     <a href="#home" class="back-to-top" aria-label="Back to top">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
@@ -2265,7 +2252,7 @@ const showcaseData = [
   { id:'php',         label:'Core PHP',    tag:'Core PHP',     items:['Custom Admin Dashboard','Inventory Management System','Appointment Booking System','Employee Management Portal','Custom CMS Build','Invoice Generator App','Membership Portal','Custom Contact Database','Event Registration System'] },
   { id:'wordpress',   label:'WordPress',   tag:'WordPress',   items:['Boutique Hotel Website','Law Firm Website','Real Estate Listings Site','Nonprofit Donation Site','Restaurant & Catering Site','Medical Clinic Website','Personal Blog Theme','Local Business Directory','Fitness Studio Website'] },
   { id:'shopify',     label:'Shopify',     tag:'Shopify',      items:['Skincare Brand Store','Streetwear Fashion Store','Home Decor Store','Handmade Jewelry Shop','Pet Supplies Store','Coffee Subscription Store','Fitness Apparel Store','Electronics Accessories Store','Artisan Candle Shop'] },
-  { id:'webflow',     label:'Webflow',     tag:'Webflow',      items:['Tech Startup Website','Creative Portfolio Site','SaaS Marketing Website','Fitness Brand Website','Real Estate Agency Site','Design Studio Website','Nonprofit Organization Site','Product Launch Website','Consulting Website'] }
+  { id:'Framer',     label:'Framer',     tag:'Framer',      items:['Tech Startup Website','Creative Portfolio Site','SaaS Marketing Website','Fitness Brand Website','Real Estate Agency Site','Design Studio Website','Nonprofit Organization Site','Product Launch Website','Consulting Website'] }
 ];
 
 const arrowSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>';
