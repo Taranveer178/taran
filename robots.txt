@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap URL (Replace with your actual domain)
+Sitemap: https://taranveer.in/sitemap.xml
