@@ -334,8 +334,8 @@
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Showcase</span>
-      <h2>Client work, by platform</h2>
-      <p>A sample of the kind of sites and applications I build. Pick a platform below to view projects.</p>
+      <h2>Selected Work & Projects</h2>
+      <p>A collection of websites, applications, and digital experiences I’ve worked on across different technologies and platforms.</p>
     </div>
 
     <div class="showcase-tabs reveal" id="showcaseTabs"></div>
@@ -532,19 +532,25 @@
     <div class="section-head reveal">
       <span class="eyebrow">Connect with me</span>
       <h2>Have a project in mind? Let's build it.</h2>
+      <p>Looking for a reliable PHP/Laravel developer for a custom application, database integration, or a full-stack project? Reach out.</p>
     </div>
 
     <div class="contact-grid glass reveal">
+      <!-- Left Info Panel -->
       <div class="contact-info">
         <h2>Get in touch</h2>
         <p>I am also open to connecting with professionals on LinkedIn to talk about web development, debugging, and business logic.</p>
         <div class="contact-info-list">
           <div class="contact-info-item">
-            <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></div>
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
+            </div>
             <span>staranveer178@gmail.com</span>
           </div>
           <div class="contact-info-item">
-            <div class="contact-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.68 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0122 16.92z"/></svg></div>
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.68 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0122 16.92z"/></svg>
+            </div>
             <span>+91 62839 45840</span>
           </div>
         </div>
@@ -561,8 +567,13 @@
         </div>
       </div>
 
+      <!-- Right Form Wrap -->
       <div class="contact-form-wrap">
-        <form action="https://formsubmit.co/staranveer178@gmail.com" method="POST" id="contactForm" novalidate>
+        <form action="https://formsubmit.co/staranveer178@gmail.com" method="POST" id="contactForm">
+          <!-- FormSubmit Configuration -->
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          
           <div class="form-row">
             <div class="form-field">
               <label for="cf-name">Name</label>
@@ -575,7 +586,7 @@
           </div>
           <div class="form-field">
             <label for="cf-subject">Subject</label>
-            <input type="text" id="cf-subject" name="subject" placeholder="What's this about?" required>
+            <input type="text" id="cf-subject" name="_subject" placeholder="What's this about?" required>
           </div>
           <div class="form-field">
             <label for="cf-message">Message</label>
@@ -587,13 +598,6 @@
           </button>
           <p class="form-note">Currently accepting new development projects.</p>
         </form>
-        <div class="form-success" id="formSuccess">
-          <div class="form-success-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-          </div>
-          <h3>Message ready to send</h3>
-          <p>Thanks for reaching out! (Connect this form to your backend/email service).</p>
-        </div>
       </div>
     </div>
   </div>
@@ -1072,18 +1076,17 @@ function setShowcaseTab(tabId){
 setShowcaseTab(showcaseData[0].id);
 
 // Contact form
+// =============================
+// Contact Form Native Handler
+// =============================
 const contactForm = document.getElementById('contactForm');
-const formSuccess = document.getElementById('formSuccess');
-
-if(contactForm){
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if(!contactForm.checkValidity()){
-      contactForm.reportValidity();
-      return;
+if (contactForm) {
+  contactForm.addEventListener('submit', () => {
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Submitting...';
     }
-    contactForm.style.display = 'none';
-    formSuccess.classList.add('show');
   });
 }
 </script>
