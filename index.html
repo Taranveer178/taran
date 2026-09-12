@@ -607,7 +607,7 @@
 <!-- ============================= -->
 <!-- Start of WhatsApp Widget      -->
 <!-- ============================= -->
-<div class="whatsapp-widget">
+<div class="whatsapp-widget" style="display:none;">
   <div class="whatsapp-popup" id="whatsappPopup">
     <div class="whatsapp-popup-header">
       <h4>Start a Conversation</h4>
@@ -1089,7 +1089,20 @@ if (contactForm) {
     }
   });
 }
+
 </script>
+
+<!-- ============================= -->
+<!-- Start of Dialogflow Messenger -->
+<!-- ============================= -->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="Taranveer Singh Assistant"
+  agent-id="48dae15a-16bd-4170-b304-7d09634ec442"
+  language-code="en"
+></df-messenger>
+<!-- End of Dialogflow Messenger -->
 <!-- End of Javascript -->
 
 </body>
