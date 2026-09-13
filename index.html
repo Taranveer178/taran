@@ -74,7 +74,6 @@
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#skills">Skills</a>
-      <!-- <a href="#projects">Projects</a> -->
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </div>
@@ -101,7 +100,7 @@
         PHP • Laravel • MySQL • React JS • Wordpress • Shopify • Wix
       </div>
       <div class="hero-ctas">
-        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#experience" class="btn btn-primary">View My Experience</a>
         <a href="#contact" class="btn btn-secondary">Let's Work Together</a>
       </div>
       <div class="hero-socials">
@@ -125,7 +124,6 @@
       <div class="hero-photo">
         <img src="/img/Photograph_TaranveerSingh.webp" alt="Taranveer Singh, Full-Stack PHP Developer" loading="eager">
       </div>
-      <!-- Removed Top "Business Logic" Badge -->
       <div class="hero-float-badge glass bottom">
         <div class="hero-float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
         <div><b>My Approach</b><span>Think. Build. Improve.</span></div>
@@ -254,15 +252,9 @@
         <p>Connecting platforms via REST APIs and designing complex relational database schemas for optimal performance.</p>
       </div>
     </div>
-    <div class="slider-nav">
-      <button class="slider-btn" onclick="scrollSlider('servicesSlider', -1)" aria-label="Previous">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="slider-btn" onclick="scrollSlider('servicesSlider', 1)" aria-label="Next">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-    </div>
 
+    <!-- Pagination Dots for Mobile -->
+    <div class="slider-dots" id="servicesDots"></div>
   </div>
 </section>
 <!-- End of Services Section -->
@@ -283,14 +275,14 @@
         <div class="skill-card-head"><span class="skill-card-dot" style="background:var(--accent);"></span><h3>Backend Development</h3></div>
         <div class="skill-pills">
           <span class="skill-pill">PHP</span><span class="skill-pill">Laravel</span><span class="skill-pill">MySQL</span>
-          <span class="skill-pill">Node JS</span><span class="skill-pill">REST APIs</span>
+          <span class="skill-pill">Blade Templates</span><span class="skill-pill">REST APIs</span>
         </div>
       </div>
       <div class="skill-card glass reveal">
         <div class="skill-card-head"><span class="skill-card-dot" style="background:var(--accent-2);"></span><h3>Frontend & UI</h3></div>
         <div class="skill-pills">
           <span class="skill-pill">HTML5</span><span class="skill-pill">CSS3</span><span class="skill-pill">JavaScript</span>
-          <span class="skill-pill">jQuery</span><span class="skill-pill">React JS</span><span class="skill-pill">Bootstrap</span>
+          <span class="skill-pill">jQuery</span><span class="skill-pill">AJAX</span><span class="skill-pill">Bootstrap</span>
         </div>
       </div>
       <div class="skill-card glass reveal">
@@ -309,146 +301,18 @@
       <div class="skill-card glass reveal learning" style="grid-column:span 2;">
         <div class="skill-card-head"><span class="skill-card-dot" style="background:var(--accent-grow);"></span><h3>Web Deployment</h3></div>
         <div class="skill-pills">
-          <span class="skill-pill">Hosting</span><span class="skill-pill">Domains</span><span class="skill-pill">SSL / HTTPS</span>
+          <span class="skill-pill">Hosting Setup</span><span class="skill-pill">Domains Management</span><span class="skill-pill">SSL/HTTPS</span>
           <span class="skill-pill">Deployment</span>
         </div>
       </div>
     </div>
-    <div class="slider-nav">
-      <button class="slider-btn" onclick="scrollSlider('skillsSlider', -1)" aria-label="Previous">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="slider-btn" onclick="scrollSlider('skillsSlider', 1)" aria-label="Next">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-    </div>
 
+    <!-- Pagination Dots for Mobile -->
+    <div class="slider-dots" id="skillsDots"></div>
   </div>
 </section>
 <!-- End of Skills Section -->
 
-<!-- ============================= -->
-<!-- Start of Showcase Section     -->
-<!-- ============================= -->
-<section id="showcase" style="background:var(--bg-soft); display:none;">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Showcase</span>
-      <h2>Selected Work & Projects</h2>
-      <p>A collection of websites, applications, and digital experiences I’ve worked on across different technologies and platforms.</p>
-    </div>
-
-    <div class="showcase-tabs reveal" id="showcaseTabs"></div>
-    <div class="showcase-grid mobile-slider" id="showcaseGrid"></div>
-    
-    <div class="slider-nav" id="showcaseNav">
-      <button class="slider-btn" onclick="scrollSlider('showcaseGrid', -1)" aria-label="Previous">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="slider-btn" onclick="scrollSlider('showcaseGrid', 1)" aria-label="Next">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-    </div>
-
-  </div>
-</section>
-<!-- End of Showcase Section -->
-
-<!-- ============================= -->
-<!-- Start of Projects Section     -->
-<!-- ============================= -->
-
-
-<!-- Modals -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal glass" id="modalContent"></div>
-</div>
-<!-- End of Projects Section -->
-
-<!-- ============================= -->
-<!-- Start of Testimonials         -->
-<!-- ============================= -->
-<section id="testimonials" class="testi-section">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Client Feedback</span>
-      <h2>What clients say</h2>
-      <p>A few notes from people I've built websites and applications for.</p>
-    </div>
-  </div>
-  
-  <div class="testi-slider reveal">
-    <div class="testi-track mobile-slider" id="testiTrack">
-      
-      <!-- Slide Set 1 -->
-      <div class="testi-card glass">
-        <div class="testi-stars">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <p class="testi-quote">"Taranveer rebuilt our custom PHP backend logic flawlessly. He was easy to communicate with and kept things precisely on schedule."</p>
-        <div class="testi-person">
-          <img class="testi-avatar" src="https://i.pravatar.cc/100?img=12" alt="Client avatar" loading="lazy">
-          <div>
-            <div class="testi-name">Ravi Mehta</div>
-            <div class="testi-role">Founder, Local Business</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="testi-card glass">
-        <div class="testi-stars">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <p class="testi-quote">"We needed an e-commerce integration up quickly for a product launch. He handled the database mapping and checkout details without any hand-holding."</p>
-        <div class="testi-person">
-          <img class="testi-avatar" src="https://i.pravatar.cc/100?img=32" alt="Client avatar" loading="lazy">
-          <div>
-            <div class="testi-name">Simran Kaur</div>
-            <div class="testi-role">Co-founder, D2C brand</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="testi-card glass">
-        <div class="testi-stars">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <p class="testi-quote">"He built a robust internal tool for us in Laravel that replaced a messy spreadsheet workflow. Clean code, and he explained decisions clearly along the way."</p>
-        <div class="testi-person">
-          <img class="testi-avatar" src="https://i.pravatar.cc/100?img=51" alt="Client avatar" loading="lazy">
-          <div>
-            <div class="testi-name">Arjun Verma</div>
-            <div class="testi-role">Operations Lead, Agency</div>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-    
-    <div class="slider-nav">
-      <button class="slider-btn" onclick="scrollSlider('testiTrack', -1)" aria-label="Previous">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="slider-btn" onclick="scrollSlider('testiTrack', 1)" aria-label="Next">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-    </div>
-
-  </div>
-</section>
-<!-- End of Testimonials -->
 
 <!-- ============================= -->
 <!-- Start of Experience Section   -->
@@ -530,9 +394,9 @@
 <section id="contact" style="background:var(--bg-soft);">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Connect with me</span>
-      <h2>Have a project in mind? Let's build it.</h2>
-      <p>Looking for a reliable PHP/Laravel developer for a custom application, database integration, or a full-stack project? Reach out.</p>
+      <span class="eyebrow">Get In Touch</span>
+      <h2>Let’s connect and talk tech</h2>
+      <p>Whether you want to discuss full-stack development, database architecture, or share developer insights, my inbox is always open.</p>
     </div>
 
     <div class="contact-grid glass reveal">
@@ -590,52 +454,19 @@
           </div>
           <div class="form-field">
             <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" placeholder="Tell me a bit about your project or technical challenge..." required></textarea>
+            <textarea id="cf-message" name="message" placeholder="Share a topic, technical question, or just say hello..." required></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-block">
             Send message
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
           </button>
-          <p class="form-note">Currently accepting new development projects.</p>
+          <p class="form-note">Always happy to connect!</p>
         </form>
       </div>
     </div>
   </div>
 </section>
-
-
 <!-- End of Contact Section -->
-
-<!-- ============================= -->
-<!-- Start of WhatsApp Widget      -->
-<!-- ============================= -->
-<div class="whatsapp-widget" style="display:none;">
-  <div class="whatsapp-popup" id="whatsappPopup">
-    <div class="whatsapp-popup-header">
-      <h4>Start a Conversation</h4>
-      <p>Hi! Click below to chat on WhatsApp</p>
-    </div>
-    <div class="whatsapp-popup-body">
-      <a href="https://wa.me/916283945840?text=Hi%20Taranveer,%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect!" target="_blank" rel="noopener noreferrer" class="whatsapp-chat-card">
-        <div class="whatsapp-chat-icon">
-          <svg viewBox="0 0 32 32" fill="currentColor">
-            <path d="M16 0C7.163 0 0 7.163 0 16c0 2.825.738 5.488 2.038 7.788L.075 31.925l8.35-2.188A15.938 15.938 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.338a13.29 13.29 0 01-6.788-1.863l-.487-.287-5.038 1.325 1.35-4.912-.313-.5a13.3 13.3 0 1111.275 6.237zm7.313-9.988c-.4-.2-2.375-1.175-2.738-1.3-.375-.138-.65-.2-.925.2s-1.063 1.3-1.3 1.575-.487.313-.888.113a11.16 11.16 0 01-3.287-2.025 12.338 12.338 0 01-2.275-2.838c-.237-.4 0-.625.2-.825.175-.175.4-.462.6-.687.2-.238.263-.4.4-.663.138-.275.075-.5-.037-.7s-.925-2.225-1.263-3.05c-.337-.8-.675-.7-.925-.712h-.788c-.275 0-.712.1-1.088.513s-1.425 1.387-1.425 3.388 1.463 3.938 1.663 4.2 2.875 4.388 6.963 6.15c.975.425 1.738.675 2.338.863.988.313 1.888.263 2.6.163.788-.113 2.375-.975 2.713-1.913.338-.938.338-1.75.238-1.913-.1-.162-.375-.262-.775-.462z"/>
-          </svg>
-        </div>
-        <div class="whatsapp-chat-info">
-          <h5>Taranveer Singh</h5>
-          <span>Chat on WhatsApp</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <button class="whatsapp-btn" id="whatsappToggle" aria-label="Open WhatsApp chat">
-    <svg viewBox="0 0 32 32" fill="currentColor">
-      <path d="M16 0C7.163 0 0 7.163 0 16c0 2.825.738 5.488 2.038 7.788L.075 31.925l8.35-2.188A15.938 15.938 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.338a13.29 13.29 0 01-6.788-1.863l-.487-.287-5.038 1.325 1.35-4.912-.313-.5a13.3 13.3 0 1111.275 6.237zm7.313-9.988c-.4-.2-2.375-1.175-2.738-1.3-.375-.138-.65-.2-.925.2s-1.063 1.3-1.3 1.575-.487.313-.888.113a11.16 11.16 0 01-3.287-2.025 12.338 12.338 0 01-2.275-2.838c-.237-.4 0-.625.2-.825.175-.175.4-.462.6-.687.2-.238.263-.4.4-.663.138-.275.075-.5-.037-.7s-.925-2.225-1.263-3.05c-.337-.8-.675-.7-.925-.712h-.788c-.275 0-.712.1-1.088.513s-1.425 1.387-1.425 3.388 1.463 3.938 1.663 4.2 2.875 4.388 6.963 6.15c.975.425 1.738.675 2.338.863.988.313 1.888.263 2.6.163.788-.113 2.375-.975 2.713-1.913.338-.938.338-1.75.238-1.913-.1-.162-.375-.262-.775-.462z"/>
-    </svg>
-  </button>
-</div>
-<!-- End of WhatsApp Widget -->
 
 <!-- ============================= -->
 <!-- Start of Footer Section       -->
@@ -667,7 +498,6 @@
           <a href="#about">About Me</a>
           <a href="#services">Services</a>
           <a href="#skills">Stack</a>
-          <!-- <a href="#projects">Projects</a> -->
           <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
         </div>
@@ -771,21 +601,6 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Floating WhatsApp popup toggle
-const whatsappToggle = document.getElementById('whatsappToggle');
-const whatsappPopup = document.getElementById('whatsappPopup');
-
-whatsappToggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  whatsappPopup.classList.toggle('open');
-});
-
-document.addEventListener('click', (e) => {
-  if (!whatsappPopup.contains(e.target) && e.target !== whatsappToggle) {
-    whatsappPopup.classList.remove('open');
-  }
-});
-
 // Scroll reveal
 function observeReveal(els){
   const io = new IntersectionObserver((entries) => {
@@ -882,202 +697,98 @@ sliders.forEach(slider => {
   });
 });
 
-// Project modal
-const projectData = {
-  p1: {
-    title: 'SchoolERP',
-    desc: 'A major school-management and ERP software built using Laravel, handling everything from student administration to complex fee calculations.',
-    features: [
-      'Fee management, Main & Pocket Money ledgers, and dynamic fee receipts.',
-      'Complex business logic: Quarter-based filtering, tuition & transport fee calculations, and concession logic.',
-      'Authentication, session-based workflows, and database migrations via Laravel Models/Controllers.',
-      'DataTables integration, robust reporting, and PDF/Excel database exports.',
-      'Marketing dashboard covering lead management, visit scheduling, and status notes.'
-    ],
-    stack: ['Laravel', 'PHP', 'MySQL', 'Blade', 'JavaScript', 'Bootstrap', 'AJAX'],
-    github: 'https://github.com/Taranveer178',
-    live: 'https://taranveer.in/#projects'
-  },
-  p2: {
-    title: 'Shirtee',
-    desc: 'A dynamic e-commerce web application focused on T-shirt retail, featuring a responsive UI and full database integration.',
-    features: [
-      'Custom e-commerce functionality built in core PHP.',
-      'Interactive product presentation and responsive layout.',
-      'Backend database integration via MySQL for inventory and ordering.',
-      'Business-oriented web development practices.'
-    ],
-    stack: ['PHP', 'MySQL', 'HTML', 'CSS', 'JavaScript'],
-    github: 'https://github.com/Taranveer178',
-    live: 'https://taranveer.in/#projects'
-  },
-  p3: {
-    title: 'Brew House Cafe',
-    desc: 'A modern, responsive business website developed for a restaurant/cafe, focusing on user-friendly presentation.',
-    features: [
-      'Modern visual design and clean typography.',
-      'Fully responsive UI layout for mobile and desktop users.',
-      'Business-oriented structure designed for local customer engagement.',
-      'Lightweight vanilla JavaScript for frontend interactions.'
-    ],
-    stack: ['HTML', 'CSS', 'JavaScript'],
-    github: 'https://github.com/Taranveer178',
-    live: 'https://taranveer.in/#projects'
-  },
-  p4: {
-    title: 'TownTalk',
-    desc: 'A custom PHP-based web application solving practical community/business communication needs with a reliable MySQL backend.',
-    features: [
-      'Practical custom web application logic.',
-      'Database integration for managing application data.',
-      'Clean interface developed with standard HTML/CSS.',
-      'Client-side interactions and form handling via JavaScript.'
-    ],
-    stack: ['PHP', 'MySQL', 'HTML', 'CSS', 'JavaScript'],
-    github: 'https://github.com/Taranveer178',
-    live: 'https://taranveer.in/#projects'
-  },
-  p5: {
-    title: 'ResearchHive',
-    desc: 'An academic writing service landing page tailored for high conversion, professional branding, and SEO considerations.',
-    features: [
-      'High-conversion landing page design layout.',
-      'Professional service presentation and clear visual hierarchy.',
-      'Underlying structural optimizations for Search Engine Optimization (SEO).',
-      'Clean HTML semantic tags and lightweight CSS.'
-    ],
-    stack: ['HTML', 'CSS', 'SEO Structure'],
-    github: 'https://github.com/Taranveer178',
-    live: 'https://taranveer.in/#projects'
-  },
-  p6: {
-    title: 'Ashiana Public School',
-    desc: 'An education-sector website featuring structured data, responsive layout, and robust Apache/.htaccess URL rewriting.',
-    features: [
-      'Education-sector specific website structure.',
-      'Server-level optimizations including .htaccess file configuration.',
-      'URL rewriting rules for clean, SEO-friendly endpoints.',
-      'Responsive design adapting to all device resolutions.'
-    ],
-    stack: ['PHP', 'Apache Config', 'HTML', 'CSS'],
-    github: 'https://github.com/Taranveer178',
-    live: 'https://taranveer.in/#projects'
+// ============================================
+// Infinite Mobile Slider & Dot Synchronization
+// ============================================
+function initInfiniteSliderDots(sliderId, dotsContainerId) {
+  const slider = document.getElementById(sliderId);
+  const dotsContainer = document.getElementById(dotsContainerId);
+  if (!slider || !dotsContainer) return;
+
+  // Store original children
+  const originalSlides = Array.from(slider.children).filter(el => !el.hasAttribute('data-clone'));
+  const totalOriginal = originalSlides.length;
+  if (totalOriginal <= 1) return;
+
+  // Build pagination dots for original items
+  dotsContainer.innerHTML = '';
+  for (let i = 0; i < totalOriginal; i++) {
+    const dot = document.createElement('button');
+    dot.classList.add('slider-dot');
+    dot.setAttribute('aria-label', `Slide ${i + 1}`);
+    if (i === 0) dot.classList.add('active');
+
+    dot.addEventListener('click', () => {
+      const slideWidth = originalSlides[0].offsetWidth + 16;
+      slider.scrollTo({
+        left: (totalOriginal + i) * slideWidth,
+        behavior: 'smooth'
+      });
+    });
+
+    dotsContainer.appendChild(dot);
   }
-};
 
-const overlay = document.getElementById('modalOverlay');
-const modalContent = document.getElementById('modalContent');
-const checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+  // FIX: Clone slides WITH the data-clone attribute so Desktop CSS hides them!
+  originalSlides.forEach(slide => {
+    const clonePre = slide.cloneNode(true);
+    clonePre.setAttribute('aria-hidden', 'true');
+    clonePre.setAttribute('data-clone', 'true'); // <-- THIS FIXES DESKTOP EMPTY SPACE
+    slider.insertBefore(clonePre, slider.firstChild);
 
-function openModal(id){
-  const p = projectData[id];
-  if(!p) return;
-  modalContent.innerHTML = `
-    <button class="modal-close" id="modalCloseBtn" aria-label="Close">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
-    <h3>${p.title}</h3>
-    <p class="modal-desc">${p.desc}</p>
-    <div class="modal-section-label">Key features & Logic</div>
-    <ul class="modal-features">
-      ${p.features.map(f => `<li>${checkSvg}<span>${f}</span></li>`).join('')}
-    </ul>
-    <div class="modal-section-label">Built with</div>
-    <div class="modal-stack">
-      ${p.stack.map(s => `<span class="stack-chip">${s}</span>`).join('')}
-    </div>
-    <div class="project-actions" style="margin-top: 24px;">
-      <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">GitHub Repo</a>
-      <a href="${p.live}" class="project-link">View Project</a>
-    </div>
-  `;
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
-}
-
-window.openShowcaseModal = function(title, tag) {
-  modalContent.innerHTML = `
-    <button class="modal-close" id="modalCloseBtn" aria-label="Close">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
-    <h3>${title}</h3>
-    <p class="modal-desc">A premium ${tag} project developed to showcase responsive design, modern UI, and interactive user experience.</p>
-    <div class="modal-section-label">Platform / Technology</div>
-    <div class="modal-stack">
-      <span class="stack-chip">${tag}</span>
-    </div>
-    <div class="project-actions" style="margin-top: 24px;">
-      <a href="https://taranveer.in/#projects" class="project-link">View Live Project</a>
-    </div>
-  `;
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
-}
-
-function closeModal(){
-  overlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('click', () => openModal(card.dataset.modal));
-});
-overlay.addEventListener('click', (e) => { if(e.target === overlay) closeModal(); });
-document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
-
-// Showcase tabs
-const showcaseData = [
-  { id:'laravel',     label:'Laravel',     tag:'Laravel',      items:['LMS Platform','Multi-vendor Marketplace','Property Rental Platform','Job Board Application','Restaurant Ordering System','Healthcare Booking App','SaaS Subscription App','Blogging Platform','Freelance Marketplace'] },
-  { id:'php',         label:'Core PHP',    tag:'Core PHP',     items:['Custom Admin Dashboard','Inventory Management System','Appointment Booking System','Employee Management Portal','Custom CMS Build','Invoice Generator App','Membership Portal','Custom Contact Database','Event Registration System'] },
-  { id:'wordpress',   label:'WordPress',   tag:'WordPress',   items:['Boutique Hotel Website','Law Firm Website','Real Estate Listings Site','Nonprofit Donation Site','Restaurant & Catering Site','Medical Clinic Website','Personal Blog Theme','Local Business Directory','Fitness Studio Website'] },
-  { id:'shopify',     label:'Shopify',     tag:'Shopify',      items:['Skincare Brand Store','Streetwear Fashion Store','Home Decor Store','Handmade Jewelry Shop','Pet Supplies Store','Coffee Subscription Store','Fitness Apparel Store','Electronics Accessories Store','Artisan Candle Shop'] },
-  { id:'Framer',     label:'Framer',     tag:'Framer',      items:['Tech Startup Website','Creative Portfolio Site','SaaS Marketing Website','Fitness Brand Website','Real Estate Agency Site','Design Studio Website','Nonprofit Organization Site','Product Launch Website','Consulting Website'] }
-];
-
-const arrowSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>';
-
-const showcaseTabsEl = document.getElementById('showcaseTabs');
-const showcaseGridEl = document.getElementById('showcaseGrid');
-
-function renderShowcaseTabs(activeId){
-  showcaseTabsEl.innerHTML = showcaseData.map(tab =>
-    `<button type="button" class="showcase-tab${tab.id === activeId ? ' active' : ''}" data-tab="${tab.id}">${tab.label}</button>`
-  ).join('');
-  showcaseTabsEl.querySelectorAll('.showcase-tab').forEach(btn => {
-    btn.addEventListener('click', () => setShowcaseTab(btn.dataset.tab));
+    const clonePost = slide.cloneNode(true);
+    clonePost.setAttribute('aria-hidden', 'true');
+    clonePost.setAttribute('data-clone', 'true'); // <-- THIS FIXES DESKTOP EMPTY SPACE
+    slider.appendChild(clonePost);
   });
+
+  const getSlideWidth = () => originalSlides[0].offsetWidth + 16;
+
+  const initialOffset = () => {
+    if (window.innerWidth <= 768) {
+      slider.scrollLeft = totalOriginal * getSlideWidth();
+    } else {
+      slider.scrollLeft = 0;
+    }
+  };
+
+  setTimeout(initialOffset, 50);
+
+  let isResetting = false;
+
+  slider.addEventListener('scroll', () => {
+    if (window.innerWidth > 768 || isResetting) return;
+
+    const slideWidth = getSlideWidth();
+    const currentScroll = slider.scrollLeft;
+    const totalSetWidth = totalOriginal * slideWidth;
+
+    if (currentScroll < slideWidth * 0.5) {
+      isResetting = true;
+      slider.scrollLeft += totalSetWidth;
+      setTimeout(() => { isResetting = false; }, 50);
+    } else if (currentScroll >= totalSetWidth * 2 - slideWidth * 0.5) {
+      isResetting = true;
+      slider.scrollLeft -= totalSetWidth;
+      setTimeout(() => { isResetting = false; }, 50);
+    }
+
+    const rawIndex = Math.round(slider.scrollLeft / slideWidth);
+    const activeIndex = (rawIndex % totalOriginal + totalOriginal) % totalOriginal;
+
+    const dots = dotsContainer.children;
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('active', i === activeIndex);
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', initialOffset);
 }
 
-function renderShowcaseGrid(tabId){
-  const tab = showcaseData.find(t => t.id === tabId);
-  if(!tab) return;
-  showcaseGridEl.style.opacity = '0';
-  setTimeout(() => {
-    showcaseGridEl.innerHTML = tab.items.map((title, i) => `
-      <article class="showcase-card" onclick="openShowcaseModal('${title}', '${tab.tag}')">
-        <img src="https://picsum.photos/seed/${tab.id}-${i}/640/500" alt="${title}" loading="lazy">
-        <a href="javascript:void(0)" class="showcase-card-arrow" aria-label="View ${title}">${arrowSvg}</a>
-        <div class="showcase-card-overlay">
-          <span class="showcase-card-tag">${tab.tag}</span>
-          <span class="showcase-card-title">${title}</span>
-        </div>
-      </article>
-    `).join('');
-    showcaseGridEl.style.opacity = '1';
-    observeReveal(showcaseGridEl.querySelectorAll('.reveal'));
-  }, 180);
-}
+// Initialize on page load
+initInfiniteSliderDots('servicesSlider', 'servicesDots');
+initInfiniteSliderDots('skillsSlider', 'skillsDots');
 
-function setShowcaseTab(tabId){
-  renderShowcaseTabs(tabId);
-  renderShowcaseGrid(tabId);
-}
-
-setShowcaseTab(showcaseData[0].id);
-
-// Contact form
 // =============================
 // Contact Form Native Handler
 // =============================
@@ -1091,7 +802,6 @@ if (contactForm) {
     }
   });
 }
-
 </script>
 
 <!-- ============================= -->
@@ -1106,6 +816,7 @@ if (contactForm) {
     language-code="en"
     chat-icon="https://taranveer.in/img/chatbot.webp">
 </df-messenger>
+
 
 <!-- End of Javascript -->
 
