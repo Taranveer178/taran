@@ -14,8 +14,8 @@
 <link rel="canonical" href="https://taranveer.in/">
 
 <!-- Favicons (Adaptive Light / Dark Mode) -->
-<link rel="icon" href="/img/Taranveer_logo_light.webp" media="(prefers-color-scheme: light)" type="image/webp">
-<link rel="icon" href="/img/Taranveer_logo_dark.webp" media="(prefers-color-scheme: dark)" type="image/webp">
+<link rel="icon" href="img/Taranveer_logo_light.webp" media="(prefers-color-scheme: light)" type="image/webp">
+<link rel="icon" href="img/Taranveer_logo_dark.webp" media="(prefers-color-scheme: dark)" type="image/webp">
 <link rel="apple-touch-icon" href="/img/Taranveer_logo_dark.webp">
 
 <!-- Open Graph / Facebook / LinkedIn Social Preview -->
@@ -40,7 +40,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <!-- Link to separated CSS file -->
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
@@ -52,8 +52,8 @@
   <nav class="nav" id="mainNav">
     <div class="nav-top">
       <a href="#home" class="nav-brand">
-        <img src="/img/Taranveer_logo_light.webp" alt="Taranveer Singh" class="logo-light-mode">
-        <img src="/img/Taranveer_logo_dark.webp" alt="Taranveer Singh" class="logo-dark-mode">
+        <img src="img/Taranveer_logo_light.webp" alt="Taranveer Singh" class="logo-light-mode">
+        <img src="img/Taranveer_logo_dark.webp" alt="Taranveer Singh" class="logo-dark-mode">
       </a>
       
       <!-- Right actions: Toggle + Hamburger -->
@@ -122,7 +122,7 @@
     <div class="hero-photo-wrap reveal">
       <div class="hero-photo-blob"></div>
       <div class="hero-photo">
-        <img src="/img/Photograph_TaranveerSingh.webp" alt="Taranveer Singh, Full-Stack PHP Developer" loading="eager">
+        <img src="img/Photograph_TaranveerSingh.webp" alt="Taranveer Singh, Full-Stack PHP Developer" loading="eager">
       </div>
       <div class="hero-float-badge glass bottom">
         <div class="hero-float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
@@ -259,10 +259,7 @@
 </section>
 <!-- End of Services Section -->
 
-<!-- ============================= -->
-<!-- Start of Projects Section     -->
-<!-- ============================= -->
-
+<!-- ============================= FEATURED PROJECT ============================= -->
 <section id="featured-project" style="background:var(--bg);">
   <div class="container">
     <div class="section-head reveal">
@@ -273,22 +270,40 @@
 
     <div class="fp-card glass reveal">
       <div class="fp-grid">
-        <!-- Visual Side -->
+        <!-- Visual Side (Left) -->
         <div class="fp-visual">
-          <div class="fp-image-wrap">
-            <!-- Replace src with an actual screenshot of your LMS -->
-            <img src="/img/lms.jpg" alt="LMS Project Preview" loading="lazy">
+          <div class="fp-visual-header">
+            <h4>Interface Preview</h4>
+            <p>A quick look at the student dashboard, course catalog, and interactive quiz UI.</p>
           </div>
+
+          <div class="fp-image-wrap slider-container">
+            <div class="fp-slider-track" id="lmsSlider">
+              <!-- Replace with actual screenshots of your LMS -->
+              <img src="img/lms.jpg" alt="LMS Course" class="fp-slide">
+              <img src="img/lms-2.jpg" alt="LMS Quiz" class="fp-slide">
+              <img src="img/lms-3.jpg" alt="LMS Login" class="fp-slide">
+            </div>
+            
+            <button class="fp-slider-btn prev" id="lmsPrev" aria-label="Previous image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="fp-slider-btn next" id="lmsNext" aria-label="Next image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            <div class="fp-slider-dots" id="lmsDots"></div>
+          </div>
+          
           <div class="fp-tech-stack">
-            <span class="stack-chip">PHP</span>
-            <span class="stack-chip">MySQL</span>
-            <span class="stack-chip">JavaScript</span>
-            <span class="stack-chip">HTML5</span>
-            <span class="stack-chip">CSS3</span>
+            <span class="tech-pill php">PHP</span>
+            <span class="tech-pill mysql">MySQL</span>
+            <span class="tech-pill js">JavaScript</span>
+            <span class="tech-pill html">HTML5</span>
+            <span class="tech-pill css">CSS3</span>
           </div>
         </div>
 
-        <!-- Content Side -->
+        <!-- Content Side (Right) -->
         <div class="fp-content">
           <div class="fp-note glass">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
@@ -335,7 +350,6 @@
     </div>
   </div>
 </section>
-<!-- End of Projects Section -->
 
 <!-- ============================= -->
 <!-- Start of Skills Section       -->
@@ -554,7 +568,7 @@
     <div class="footer-grid">
       <div>
         <a href="#home" class="footer-brand" style="margin-bottom: 8px;">
-          <img src="/img/Taranveer_logo_light.webp" alt="Taranveer Singh" style="height: 38px; width: auto;">
+          <img src="img/Taranveer_logo_light.webp" alt="Taranveer Singh" style="height: 38px; width: auto;">
         </a>
         <p class="footer-about">Full-Stack PHP Developer building reliable, scalable and business-focused web applications using PHP, Laravel, and MySQL.</p>
         <div class="footer-socials">
@@ -775,6 +789,62 @@ sliders.forEach(slider => {
   });
 });
 
+// ---------- Featured Project Infinite Slider ----------
+const lmsSlider = document.getElementById('lmsSlider');
+const lmsSlides = document.querySelectorAll('.fp-slide');
+const lmsPrevBtn = document.getElementById('lmsPrev');
+const lmsNextBtn = document.getElementById('lmsNext');
+const lmsDotsContainer = document.getElementById('lmsDots');
+
+if (lmsSlider) {
+  let currentSlide = 0;
+  let slideInterval;
+
+  // Create navigation dots dynamically
+  lmsSlides.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.classList.add('fp-dot');
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(index));
+    lmsDotsContainer.appendChild(dot);
+  });
+  
+  const dots = document.querySelectorAll('.fp-dot');
+
+  function updateSlider() {
+    lmsSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentSlide].classList.add('active');
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % lmsSlides.length; // Loops back to start
+    updateSlider();
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + lmsSlides.length) % lmsSlides.length; // Loops to end
+    updateSlider();
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    updateSlider();
+    resetInterval();
+  }
+
+  function resetInterval() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 4000); // Auto-advance every 4 seconds
+  }
+
+  lmsNextBtn.addEventListener('click', () => { nextSlide(); resetInterval(); });
+  lmsPrevBtn.addEventListener('click', () => { prevSlide(); resetInterval(); });
+
+  // Initialize Autoplay
+  resetInterval();
+}
+
 // ============================================
 // Infinite Mobile Slider & Dot Synchronization
 // ============================================
@@ -881,6 +951,8 @@ if (contactForm) {
   });
 }
 </script>
+
+
 
 <!-- ============================= -->
 <!-- Start of Dialogflow Messenger -->
