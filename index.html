@@ -981,7 +981,7 @@ if (contactForm) {
 <!-- ============================= -->
 <!-- Start of Dialogflow Messenger -->
 <!-- ============================= -->
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<!-- <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 
 <df-messenger
     intent="WELCOME"
@@ -989,8 +989,65 @@ if (contactForm) {
     agent-id="48dae15a-16bd-4170-b304-7d09634ec442"
     language-code="en"
     chat-icon="https://taranveer.in/img/chatbot.webp">
-</df-messenger>
+</df-messenger> -->
 
+<!-- Python Chat bot -->
+<!-- Floating AI Chat Widget -->
+<div id="ai-chat-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+  
+  <!-- Toggle Button -->
+  <button id="chat-toggle-btn" onclick="toggleChat()" style="
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+  " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">💬</button>
+
+  <!-- Chat Box Container -->
+  <div id="chat-popup" style="
+    display: none;
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    width: 380px;
+    height: 550px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+  ">
+    <iframe
+      src="https://taranveer.streamlit.app/?embed=true"
+      width="100%"
+      height="100%"
+      style="border: none;"
+    ></iframe>
+  </div>
+</div>
+
+<script>
+  function toggleChat() {
+    const box = document.getElementById("chat-popup");
+    const btn = document.getElementById("chat-toggle-btn");
+    if (box.style.display === "none" || box.style.display === "") {
+      box.style.display = "block";
+      btn.innerText = "✕";
+    } else {
+      box.style.display = "none";
+      btn.innerText = "💬";
+    }
+  }
+</script>
 
 
 <!-- End of Javascript -->
