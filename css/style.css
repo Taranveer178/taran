@@ -960,12 +960,5 @@ df-messenger::part(input-box):focus {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent) !important;
 }
 
-/*python bot*/
 
-@media(max-width:758px){
-  .chat-popup{
-    width: 90%;
-    height: 80%;
-    bottom: 10px;
-    }
-}
+
