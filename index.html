@@ -994,6 +994,8 @@ if (contactForm) {
 <!-- End of Javascript -->
 <!-- Chatbot Embed Code -->
 
+<!-- Chatbot Embed Code -->
+
 <!-- 1. Floating Toggle Button -->
 <button id="taran-chatbot-toggle" aria-label="Open Chat">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1017,15 +1019,21 @@ if (contactForm) {
             </div>
         </div>
         <div class="header-right">
-            <span class="header-icon menu-icon">...</span>
-            <span id="taran-chatbot-close" class="header-icon close-icon">✕</span>
+            <!-- Trash/Dustbin Icon for Clearing Chat -->
+            <span class="header-icon trash-icon" title="Clear Chat">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+            </span>
+            <span id="taran-chatbot-close" class="header-icon close-icon" title="Close Chat">✕</span>
         </div>
     </div>
 
     <!-- Iframe Container -->
     <div class="taran-chatbot-body">
-        <!-- IMPORTANT: Replace the URL below with your actual deployed Streamlit app URL -->
-        <iframe src="https://taranveer.streamlit.app/?embed=true" title="Taran's AI Assistant"></iframe>
+       
+        <iframe src="https://taranveer.streamlit.app/?embed=true" title="Taran's AI Assistant" frameborder="0" style="width: 100%; height: 100%; border: none; outline: none;"></iframe>
     </div>
 </div>
 
@@ -1139,14 +1147,11 @@ if (contactForm) {
         cursor: pointer;
         opacity: 0.85;
         transition: opacity 0.2s;
+        display: flex;
+        align-items: center;
     }
     .header-icon:hover {
         opacity: 1;
-    }
-    .menu-icon {
-        font-size: 22px;
-        margin-top: -12px;
-        letter-spacing: 1px;
     }
     .close-icon {
         font-size: 18px;
@@ -1158,11 +1163,6 @@ if (contactForm) {
         flex: 1;
         width: 100%;
         background-color: #ffffff;
-    }
-    .taran-chatbot-body iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
     }
 
     /* Mobile Responsiveness */
@@ -1182,12 +1182,16 @@ if (contactForm) {
     }
 </style>
 
-<!-- 4. Open/Close Logic -->
+<!-- 4. Open/Close & Clear Chat Logic -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const toggleBtn = document.getElementById("taran-chatbot-toggle");
         const closeBtn = document.getElementById("taran-chatbot-close");
         const chatWindow = document.getElementById("taran-chatbot-window");
+        
+        // Select the trash icon and the iframe
+        const trashBtn = document.querySelector(".trash-icon");
+        const iframe = document.querySelector(".taran-chatbot-body iframe");
 
         // Open chat window
         toggleBtn.addEventListener("click", function() {
@@ -1197,6 +1201,11 @@ if (contactForm) {
         // Close chat window
         closeBtn.addEventListener("click", function() {
             chatWindow.classList.add("taran-chatbot-hidden");
+        });
+
+        // Clear Chat Instantly
+        trashBtn.addEventListener("click", function() {
+            iframe.src = iframe.src;
         });
     });
 </script>
