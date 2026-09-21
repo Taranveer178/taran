@@ -1061,9 +1061,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const chatWindow = document.getElementById("taran-chatbot-window");
     const trashBtn = document.querySelector(".trash-icon");
     
-    // CHANGE THIS TO YOUR CLOUDFLARE WORKER URL
+    // Cloudflare Worker Backend URL
     const API_URL = "https://taran-rag-backend.staranveer178.workers.dev"; 
 
+    // Generate or retrieve a session ID for the user's visit
+    let chatSessionId = sessionStorage.getItem("taran_chat_session_id");
+    if (!chatSessionId) {
+        chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
+        sessionStorage.setItem("taran_chat_session_id", chatSessionId);
+    }
+
+    // Toggle Chatbot Window
     toggleBtn.addEventListener("click", () => {
         toggleBtn.classList.add("btn-hidden");
         chatWindow.classList.remove("taran-chatbot-hidden");
@@ -1074,14 +1082,16 @@ document.addEventListener("DOMContentLoaded", function() {
         toggleBtn.classList.remove("btn-hidden");
     });
 
+    // Clear Chat History
     trashBtn.addEventListener("click", () => {
         chatHistory.innerHTML = `
             <div class="chat-message bot">
-                <img src="https://taranveer.in/img/chatbot.webp" class="chat-avatar bot-avatar">
+                <img src="https://taranveer.in/img/chatbot.webp" class="chat-avatar bot-avatar" alt="Taran Avatar">
                 <div class="chat-bubble bot-bubble">Hello! Ask me anything about my projects, background, or skills.</div>
             </div>`;
     });
 
+    // Input and Send Controls
     chatInput.addEventListener("input", function() {
         sendBtn.disabled = this.value.trim().length === 0;
     });
@@ -1092,89 +1102,83 @@ document.addEventListener("DOMContentLoaded", function() {
 
     sendBtn.addEventListener("click", sendMessage);
 
-    // Replace addMessageUI and sendMessage with this updated logic:
+    async function sendMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
 
-async function sendMessage() {
-    const text = chatInput.value.trim();
-    if (!text) return;
+        addMessageUI("user", text);
+        chatInput.value = "";
+        sendBtn.disabled = true;
 
-    addMessageUI("user", text);
-    chatInput.value = "";
-    sendBtn.disabled = true;
-
-    const typingId = "typing-" + Date.now();
-    const typingIndicatorHtml = `
-      <div class="typing-dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    `;
-    
-    // Inject the typing bubble containing the 3 animated dots
-    addMessageUI("bot", typingIndicatorHtml, typingId, true);
-
-    try {
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: text })
-        });
-
-        if (!response.ok) throw new Error("API Error");
-        const data = await response.json();
+        const typingId = "typing-" + Date.now();
+        const typingIndicatorHtml = `
+          <div class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        `;
         
-        // Replace typing animation with server reply
-        const typingElem = document.getElementById(typingId);
-        if (typingElem) {
-            typingElem.textContent = data.reply;
+        // 1. Show the typing animation first
+        addMessageUI("bot", typingIndicatorHtml, typingId, true);
+
+        try {
+            // 2. Send both user prompt and session ID to Cloudflare Worker
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ 
+                    message: text,
+                    sessionId: chatSessionId 
+                })
+            });
+
+            if (!response.ok) throw new Error("API Error");
+            const data = await response.json();
+            
+            // 3. Replace typing animation with server reply
+            const typingElem = document.getElementById(typingId);
+            if (typingElem) {
+                typingElem.textContent = data.reply;
+            }
+        } catch (error) {
+            const typingElem = document.getElementById(typingId);
+            if (typingElem) {
+                typingElem.textContent = "Under development, please wait until 6:00 PM to finish updation.";
+            }
+        } finally {
+            chatHistory.scrollTop = chatHistory.scrollHeight;
         }
-    } catch (error) {
-        const typingElem = document.getElementById(typingId);
-        if (typingElem) {
-            typingElem.textContent = "Under development, please wait until 6:00 PM to finish updation.";
+    }
+
+    function addMessageUI(sender, content, textId = null, isHtml = false) {
+        const isUser = sender === "user";
+        const avatarUrl = isUser ? "https://taranveer.in/img/user.webp" : "https://taranveer.in/img/chatbot.webp";
+        
+        const msgDiv = document.createElement("div");
+        msgDiv.className = `chat-message ${sender}`;
+        
+        const bubble = document.createElement("div");
+        bubble.className = `chat-bubble ${sender}-bubble`;
+        if (textId) bubble.id = textId;
+        
+        if (isHtml) {
+            bubble.innerHTML = content;
+        } else {
+            bubble.textContent = content;
         }
-    } finally {
+
+        const avatar = document.createElement("img");
+        avatar.src = avatarUrl;
+        avatar.className = `chat-avatar ${sender}-avatar`;
+        avatar.alt = sender;
+
+        msgDiv.appendChild(avatar);
+        msgDiv.appendChild(bubble);
+        
+        chatHistory.appendChild(msgDiv);
         chatHistory.scrollTop = chatHistory.scrollHeight;
     }
-}
-
-function addMessageUI(sender, content, textId = null, isHtml = false) {
-    const isUser = sender === "user";
-    const avatarUrl = isUser ? "https://taranveer.in/img/user.webp" : "https://taranveer.in/img/chatbot.webp";
-    
-    const msgDiv = document.createElement("div");
-    msgDiv.className = `chat-message ${sender}`;
-    
-    const bubble = document.createElement("div");
-    bubble.className = `chat-bubble ${sender}-bubble`;
-    if (textId) bubble.id = textId;
-    
-    if (isHtml) {
-        bubble.innerHTML = content;
-    } else {
-        bubble.textContent = content;
-    }
-
-    const avatar = document.createElement("img");
-    avatar.src = avatarUrl;
-    avatar.className = `chat-avatar ${sender}-avatar`;
-    avatar.alt = sender;
-
-    msgDiv.appendChild(avatar);
-    msgDiv.appendChild(bubble);
-    
-    chatHistory.appendChild(msgDiv);
-    chatHistory.scrollTop = chatHistory.scrollHeight;
-}
-});
-
-trashBtn.addEventListener("click", () => {
-    chatHistory.innerHTML = `
-        <div class="chat-message bot">
-            <img src="https://taranveer.in/img/chatbot.webp" class="chat-avatar bot-avatar" alt="Taran Avatar">
-            <div class="chat-bubble bot-bubble">Hello! Ask me anything about my projects, background, or skills.</div>
-        </div>`;
 });
 </script>
 
