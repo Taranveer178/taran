@@ -1035,11 +1035,11 @@ if (contactForm) {
         <div id="taran-chat-history" class="chat-history">
             <div class="chat-message bot">
                 <img src="https://taranveer.in/img/chatbot.webp" class="chat-avatar bot-avatar">
-                <div class="chat-bubble bot-bubble">Hello! Ask me anything about my projects, background, or skills.</div>
+                <div class="chat-bubble bot-bubble">Hi there! Welcome to Taran's portfolio. Before we begin, may I know your name?</div>
             </div>
         </div>
         <div class="chat-input-area">
-            <input type="text" id="taran-chat-input" placeholder="Ask a question about my work..." autocomplete="off">
+            <input type="text" id="taran-chat-input" placeholder="Enter your name..." autocomplete="off">
             <button id="taran-chat-send" disabled>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -1064,17 +1064,25 @@ document.addEventListener("DOMContentLoaded", function() {
     // Cloudflare Worker Backend URL
     const API_URL = "https://taran-rag-backend.staranveer178.workers.dev"; 
 
-    // Generate or retrieve a session ID for the user's visit
+    // Generate or retrieve session ID
     let chatSessionId = sessionStorage.getItem("taran_chat_session_id");
     if (!chatSessionId) {
         chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
         sessionStorage.setItem("taran_chat_session_id", chatSessionId);
     }
 
+    // Retrieve saved user name if they already provided it in this session
+    let userName = sessionStorage.getItem("taran_chat_user_name") || null;
+
+    if (userName) {
+        chatInput.placeholder = `Ask anything, ${userName}...`;
+    }
+
     // Toggle Chatbot Window
     toggleBtn.addEventListener("click", () => {
         toggleBtn.classList.add("btn-hidden");
         chatWindow.classList.remove("taran-chatbot-hidden");
+        chatInput.focus();
     });
     
     closeBtn.addEventListener("click", () => {
@@ -1082,16 +1090,19 @@ document.addEventListener("DOMContentLoaded", function() {
         toggleBtn.classList.remove("btn-hidden");
     });
 
-    // Clear Chat History
+    // Reset Chat
     trashBtn.addEventListener("click", () => {
+        sessionStorage.removeItem("taran_chat_user_name");
+        userName = null;
+        chatInput.placeholder = "Enter your name...";
         chatHistory.innerHTML = `
             <div class="chat-message bot">
                 <img src="https://taranveer.in/img/chatbot.webp" class="chat-avatar bot-avatar" alt="Taran Avatar">
-                <div class="chat-bubble bot-bubble">Hello! Ask me anything about my projects, background, or skills.</div>
+                <div class="chat-bubble bot-bubble">Hi there! Welcome to Taran's portfolio. Before we begin, may I know your name?</div>
             </div>`;
     });
 
-    // Input and Send Controls
+    // Input Controls
     chatInput.addEventListener("input", function() {
         sendBtn.disabled = this.value.trim().length === 0;
     });
@@ -1110,25 +1121,67 @@ document.addEventListener("DOMContentLoaded", function() {
         chatInput.value = "";
         sendBtn.disabled = true;
 
+        // ============================================================
+        // STEP 1: If we don't have the user's name yet, capture it!
+        // ============================================================
+        if (!userName) {
+            // Clean up name (capitalize first letter)
+            const cleanName = text.replace(/^(my name is|i am|i'm)\s+/i, "").trim();
+            userName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+            sessionStorage.setItem("taran_chat_user_name", userName);
+
+            chatInput.placeholder = `Ask anything, ${userName}...`;
+
+            // Professional acknowledgement asking what they want to know
+            const welcomeBackMsg = `Nice to meet you, ${userName}! What would you like to know about Taran's work, skills, or projects?`;
+
+            const typingId = "typing-" + Date.now();
+            const typingIndicatorHtml = `
+              <div class="typing-dots">
+                <span></span><span></span><span></span>
+              </div>
+            `;
+            addMessageUI("bot", typingIndicatorHtml, typingId, true);
+
+            setTimeout(() => {
+                const typingElem = document.getElementById(typingId);
+                if (typingElem) typingElem.textContent = welcomeBackMsg;
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            }, 600);
+
+            // Log name capture to backend/D1 in the background
+            fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ 
+                    message: `[Visitor Name Provided: ${userName}]`,
+                    userName: userName,
+                    sessionId: chatSessionId,
+                    isIntro: true
+                })
+            }).catch(() => {});
+
+            return;
+        }
+
+        // ============================================================
+        // STEP 2: Normal AI Query with user's name attached
+        // ============================================================
         const typingId = "typing-" + Date.now();
         const typingIndicatorHtml = `
           <div class="typing-dots">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
           </div>
         `;
-        
-        // 1. Show the typing animation first
         addMessageUI("bot", typingIndicatorHtml, typingId, true);
 
         try {
-            // 2. Send both user prompt and session ID to Cloudflare Worker
             const response = await fetch(API_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
                     message: text,
+                    userName: userName,
                     sessionId: chatSessionId 
                 })
             });
@@ -1136,7 +1189,6 @@ document.addEventListener("DOMContentLoaded", function() {
             if (!response.ok) throw new Error("API Error");
             const data = await response.json();
             
-            // 3. Replace typing animation with server reply
             const typingElem = document.getElementById(typingId);
             if (typingElem) {
                 typingElem.textContent = data.reply;
