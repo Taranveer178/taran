@@ -1064,19 +1064,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // Cloudflare Worker Backend URL
     const API_URL = "https://taran-rag-backend.staranveer178.workers.dev"; 
 
-    // Generate or retrieve session ID
-    let chatSessionId = sessionStorage.getItem("taran_chat_session_id");
-    if (!chatSessionId) {
-        chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
-        sessionStorage.setItem("taran_chat_session_id", chatSessionId);
-    }
-
-    // Retrieve saved user name if they already provided it in this session
-    let userName = sessionStorage.getItem("taran_chat_user_name") || null;
-
-    if (userName) {
-        chatInput.placeholder = `Ask anything, ${userName}...`;
-    }
+    // ALWAYS start a fresh session on page load (No sessionStorage)
+    let chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
+    let userName = null;
+    chatInput.placeholder = "Enter your name...";
 
     // Toggle Chatbot Window
     toggleBtn.addEventListener("click", () => {
@@ -1090,18 +1081,18 @@ document.addEventListener("DOMContentLoaded", function() {
         toggleBtn.classList.remove("btn-hidden");
     });
 
-    // Reset Chat
+    // Reset Chat (Trash Button) - Clears history AND resets the user session
     trashBtn.addEventListener("click", () => {
-        sessionStorage.removeItem("taran_chat_user_name");
         userName = null;
+        chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
         chatInput.placeholder = "Enter your name...";
+        
         chatHistory.innerHTML = `
             <div class="chat-message bot">
                 <img src="https://taranveer.in/img/chatbot.webp" class="chat-avatar bot-avatar" alt="Taran Avatar">
                 <div class="chat-bubble bot-bubble">Hi there! Welcome to Taran's portfolio. Before we begin, may I know your name?</div>
             </div>`;
     });
-
     // Input Controls
     chatInput.addEventListener("input", function() {
         sendBtn.disabled = this.value.trim().length === 0;
@@ -1136,11 +1127,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const welcomeBackMsg = `Nice to meet you, ${userName}! What would you like to know about Taran's work, skills, or projects?`;
 
             const typingId = "typing-" + Date.now();
-            const typingIndicatorHtml = `
-              <div class="typing-dots">
-                <span></span><span></span><span></span>
-              </div>
-            `;
+            const typingIndicatorHtml = '<div class="typing-dots"><span></span><span></span><span></span></div>';
             addMessageUI("bot", typingIndicatorHtml, typingId, true);
 
             setTimeout(() => {
@@ -1175,62 +1162,66 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
         addMessageUI("bot", typingIndicatorHtml, typingId, true);
 
-        try {
-            const response = await fetch(API_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    message: text,
-                    userName: userName,
-                    sessionId: chatSessionId 
-                })
-            });
+       try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ 
+                message: text,
+                userName: userName,
+                sessionId: chatSessionId 
+            })
+        });
 
-            if (!response.ok) throw new Error("API Error");
-            const data = await response.json();
-            
-            const typingElem = document.getElementById(typingId);
-            if (typingElem) {
-                typingElem.textContent = data.reply;
-            }
-        } catch (error) {
-            const typingElem = document.getElementById(typingId);
-            if (typingElem) {
-                typingElem.textContent = "Under development, please wait until 6:00 PM to finish updation.";
-            }
-        } finally {
-            chatHistory.scrollTop = chatHistory.scrollHeight;
+        if (!response.ok) throw new Error("API Error");
+        const data = await response.json();
+        
+        // --- THIS PART IS STEP 3 ---
+        const typingElem = document.getElementById(typingId);
+        if (typingElem) {
+            typingElem.classList.remove("typing-bubble"); // 1. Removes the tiny typing bubble size
+            typingElem.textContent = data.reply;          // 2. Inserts the bot's response text
         }
+    } catch (error) {
+        // Also do it here in case the server has an error
+        const typingElem = document.getElementById(typingId);
+        if (typingElem) {
+            typingElem.classList.remove("typing-bubble");
+            typingElem.textContent = "Under development, please wait until 6:00 PM to finish updation.";
+        }
+    } finally {
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+    }
     }
 
     function addMessageUI(sender, content, textId = null, isHtml = false) {
-        const isUser = sender === "user";
-        const avatarUrl = isUser ? "https://taranveer.in/img/user.webp" : "https://taranveer.in/img/chatbot.webp";
-        
-        const msgDiv = document.createElement("div");
-        msgDiv.className = `chat-message ${sender}`;
-        
-        const bubble = document.createElement("div");
-        bubble.className = `chat-bubble ${sender}-bubble`;
-        if (textId) bubble.id = textId;
-        
-        if (isHtml) {
-            bubble.innerHTML = content;
-        } else {
-            bubble.textContent = content;
-        }
-
-        const avatar = document.createElement("img");
-        avatar.src = avatarUrl;
-        avatar.className = `chat-avatar ${sender}-avatar`;
-        avatar.alt = sender;
-
-        msgDiv.appendChild(avatar);
-        msgDiv.appendChild(bubble);
-        
-        chatHistory.appendChild(msgDiv);
-        chatHistory.scrollTop = chatHistory.scrollHeight;
+    const isUser = sender === "user";
+    const avatarUrl = isUser ? "https://taranveer.in/img/user.webp" : "https://taranveer.in/img/chatbot.webp";
+    
+    const msgDiv = document.createElement("div");
+    msgDiv.className = `chat-message ${sender}`;
+    
+    const bubble = document.createElement("div");
+    bubble.className = `chat-bubble ${sender}-bubble${isHtml ? ' typing-bubble' : ''}`;
+    if (textId) bubble.id = textId;
+    
+    if (isHtml) {
+        bubble.innerHTML = content;
+    } else {
+        bubble.textContent = content;
     }
+
+    const avatar = document.createElement("img");
+    avatar.src = avatarUrl;
+    avatar.className = `chat-avatar ${sender}-avatar`;
+    avatar.alt = sender;
+
+    msgDiv.appendChild(avatar);
+    msgDiv.appendChild(bubble);
+    
+    chatHistory.appendChild(msgDiv);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+}
 });
 </script>
 

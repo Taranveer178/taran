@@ -1043,13 +1043,16 @@ df-messenger::part(input-box):focus {
 
     @media (max-width: 480px) { #taran-chatbot-window { bottom: 0; right: 0; width: 100%; height: 100%; max-height: 100vh; border-radius: 0; } .taran-chatbot-header { border-radius: 0; } }
 
-    /* Typing Indicator Animation */
+/* Compact Typing Indicator */
 .typing-dots {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  height: 18px;
-  padding: 2px 0;
+  justify-content: center;
+  gap: 5px;
+  height: 14px;
+  padding: 2px 4px;
+  line-height: 1;
+  white-space: nowrap; /* Prevents inheriting pre-wrap line heights */
 }
 
 .typing-dots span {
@@ -1062,17 +1065,13 @@ df-messenger::part(input-box):focus {
   animation: typingDotPulse 1.2s infinite ease-in-out;
 }
 
-.typing-dots span:nth-child(1) {
-  animation-delay: 0s;
+.dark .typing-dots span {
+  background-color: #9ca3af;
 }
 
-.typing-dots span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.typing-dots span:nth-child(3) {
-  animation-delay: 0.4s;
-}
+.typing-dots span:nth-child(1) { animation-delay: 0s; }
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
 
 @keyframes typingDotPulse {
   0%, 100% {
@@ -1140,4 +1139,58 @@ df-messenger::part(input-box):focus {
 }
 
 
+
+/* Ensure bubbles shrink to fit their content */
+.chat-bubble {
+  width: fit-content !important;
+  max-width: 85% !important;
+  word-break: break-word;
+}
+
+/* Dedicated compact styling for the typing indicator bubble */
+.chat-bubble.typing-bubble {
+  padding: 10px 14px !important;
+  min-height: unset !important;
+  height: auto !important;
+  width: fit-content !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+/* Tight container for the dots */
+.typing-dots {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 10px !important;
+}
+
+.typing-dots span {
+  width: 6px !important;
+  height: 6px !important;
+  background-color: #9ca3af !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  opacity: 0.4;
+  animation: typingDotPulse 1.2s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(1) { animation-delay: 0s; }
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingDotPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
 
