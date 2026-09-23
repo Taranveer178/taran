@@ -1,4 +1,5 @@
-// Theme (Default is light mode)
+
+// Theme Configuration
 const root = document.documentElement;
 const themeToggle = document.getElementById('themeToggle');
 const iconSun = document.getElementById('iconSun');
@@ -40,7 +41,6 @@ menuBtn.addEventListener('click', (e) => {
   mainNav.classList.toggle('expanded');
 });
 
-// Close nav on link click or outside click
 document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('click', () => mainNav.classList.remove('expanded'));
 });
@@ -50,7 +50,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Scroll reveal
+// Scroll Reveal
 function observeReveal(els){
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -64,7 +64,7 @@ function observeReveal(els){
 }
 observeReveal(document.querySelectorAll('.reveal'));
 
-// Counter Animation (Trust Bar)
+// Trust Bar Counters
 const counters = document.querySelectorAll('.counter');
 const counterIO = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -90,97 +90,42 @@ const counterIO = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 counters.forEach(c => counterIO.observe(c));
 
-// Active nav link on scroll
-const sections = document.querySelectorAll('section[id]');
-const navAnchors = document.querySelectorAll('.nav-links a');
-const navIO = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    const id = entry.target.getAttribute('id');
-    const link = document.querySelector('.nav-links a[href="#' + id + '"]');
-    if(!link) return;
-    if(entry.isIntersecting){
-      navAnchors.forEach(a => a.classList.remove('active'));
-      link.classList.add('active');
-    }
-  });
-}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-sections.forEach(s => navIO.observe(s));
+// Generic Slider Function for Featured Projects
+function initializeProjectSlider(sliderId, prevBtnId, nextBtnId, dotsContainerId) {
+  const sliderTrack = document.getElementById(sliderId);
+  const prevBtn = document.getElementById(prevBtnId);
+  const nextBtn = document.getElementById(nextBtnId);
+  const dotsContainer = document.getElementById(dotsContainerId);
 
+  if (!sliderTrack || !prevBtn || !nextBtn || !dotsContainer) return;
 
-// Function for mobile sliders buttons
-function scrollSlider(id, direction) {
-  const slider = document.getElementById(id);
-  if(!slider) return;
-  // Scroll by width of one card + gap
-  const scrollAmount = (slider.offsetWidth * 0.90) + 16;
-  slider.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
-}
-
-// Mouse drag-to-scroll logic for sliders
-const sliders = document.querySelectorAll('.mobile-slider');
-let isDown = false;
-let startX;
-let scrollLeft;
-
-sliders.forEach(slider => {
-  slider.addEventListener('mousedown', (e) => {
-    isDown = true;
-    slider.style.cursor = 'grabbing';
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-  slider.addEventListener('mouseleave', () => {
-    isDown = false;
-    slider.style.cursor = 'grab';
-  });
-  slider.addEventListener('mouseup', () => {
-    isDown = false;
-    slider.style.cursor = 'grab';
-  });
-  slider.addEventListener('mousemove', (e) => {
-    if(!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 1.5; // Drag speed multiplier
-    slider.scrollLeft = scrollLeft - walk;
-  });
-});
-
-// ---------- Featured Project Infinite Slider ----------
-const lmsSlider = document.getElementById('lmsSlider');
-const lmsSlides = document.querySelectorAll('.fp-slide');
-const lmsPrevBtn = document.getElementById('lmsPrev');
-const lmsNextBtn = document.getElementById('lmsNext');
-const lmsDotsContainer = document.getElementById('lmsDots');
-
-if (lmsSlider) {
+  const slides = sliderTrack.querySelectorAll('.fp-slide');
   let currentSlide = 0;
   let slideInterval;
 
-  // Create navigation dots dynamically
-  lmsSlides.forEach((_, index) => {
+  slides.forEach((_, index) => {
     const dot = document.createElement('div');
     dot.classList.add('fp-dot');
     if (index === 0) dot.classList.add('active');
     dot.addEventListener('click', () => goToSlide(index));
-    lmsDotsContainer.appendChild(dot);
+    dotsContainer.appendChild(dot);
   });
   
-  const dots = document.querySelectorAll('.fp-dot');
+  const dots = dotsContainer.querySelectorAll('.fp-dot');
 
   function updateSlider() {
-    lmsSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
     dots.forEach(dot => dot.classList.remove('active'));
     dots[currentSlide].classList.add('active');
   }
 
   function nextSlide() {
-    currentSlide = (currentSlide + 1) % lmsSlides.length; // Loops back to start
+    currentSlide = (currentSlide + 1) % slides.length;
     updateSlider();
   }
 
   function prevSlide() {
-    currentSlide = (currentSlide - 1 + lmsSlides.length) % lmsSlides.length; // Loops to end
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
     updateSlider();
   }
 
@@ -192,30 +137,42 @@ if (lmsSlider) {
 
   function resetInterval() {
     clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide, 4000); // Auto-advance every 4 seconds
+    slideInterval = setInterval(nextSlide, 4000); 
   }
 
-  lmsNextBtn.addEventListener('click', () => { nextSlide(); resetInterval(); });
-  lmsPrevBtn.addEventListener('click', () => { prevSlide(); resetInterval(); });
+  nextBtn.addEventListener('click', () => { nextSlide(); resetInterval(); });
+  prevBtn.addEventListener('click', () => { prevSlide(); resetInterval(); });
 
-  // Initialize Autoplay
   resetInterval();
 }
 
-// ============================================
-// Infinite Mobile Slider & Dot Synchronization
-// ============================================
+// Init sliders for the 3 distinct projects
+initializeProjectSlider('lmsSlider', 'lmsPrev', 'lmsNext', 'lmsDots');
+// For Project 1 (RAG Bot)
+initializeProjectSlider(
+  document.querySelector('.slider-1-track').id = 'ragSliderTrack',
+  document.querySelector('.btn-slider-1.prev').id = 'ragSliderPrev',
+  document.querySelector('.btn-slider-1.next').id = 'ragSliderNext',
+  document.querySelector('.dots-1').id = 'ragSliderDots'
+);
+// For Project 3 (RoomSplit)
+initializeProjectSlider(
+  document.querySelector('.slider-3-track').id = 'roomSliderTrack',
+  document.querySelector('.btn-slider-3.prev').id = 'roomSliderPrev',
+  document.querySelector('.btn-slider-3.next').id = 'roomSliderNext',
+  document.querySelector('.dots-3').id = 'roomSliderDots'
+);
+
+// Mobile Infinite Slider Engine (Skills & Competencies)
 function initInfiniteSliderDots(sliderId, dotsContainerId) {
   const slider = document.getElementById(sliderId);
   const dotsContainer = document.getElementById(dotsContainerId);
   if (!slider || !dotsContainer) return;
 
-  // Store original children
   const originalSlides = Array.from(slider.children).filter(el => !el.hasAttribute('data-clone'));
   const totalOriginal = originalSlides.length;
   if (totalOriginal <= 1) return;
 
-  // Build pagination dots for original items
   dotsContainer.innerHTML = '';
   for (let i = 0; i < totalOriginal; i++) {
     const dot = document.createElement('button');
@@ -234,16 +191,15 @@ function initInfiniteSliderDots(sliderId, dotsContainerId) {
     dotsContainer.appendChild(dot);
   }
 
-  // FIX: Clone slides WITH the data-clone attribute so Desktop CSS hides them!
   originalSlides.forEach(slide => {
     const clonePre = slide.cloneNode(true);
     clonePre.setAttribute('aria-hidden', 'true');
-    clonePre.setAttribute('data-clone', 'true'); // <-- THIS FIXES DESKTOP EMPTY SPACE
+    clonePre.setAttribute('data-clone', 'true'); 
     slider.insertBefore(clonePre, slider.firstChild);
 
     const clonePost = slide.cloneNode(true);
     clonePost.setAttribute('aria-hidden', 'true');
-    clonePost.setAttribute('data-clone', 'true'); // <-- THIS FIXES DESKTOP EMPTY SPACE
+    clonePost.setAttribute('data-clone', 'true');
     slider.appendChild(clonePost);
   });
 
@@ -290,19 +246,18 @@ function initInfiniteSliderDots(sliderId, dotsContainerId) {
   window.addEventListener('resize', initialOffset);
 }
 
-// Initialize on page load
 initInfiniteSliderDots('servicesSlider', 'servicesDots');
 initInfiniteSliderDots('skillsSlider', 'skillsDots');
 
 // =============================
-// Contact Form AJAX Handler
+// Contact Form AJAX Handler (Google Pay Animation)
 // =============================
 const contactForm = document.getElementById('contactForm');
 const formSuccessCard = document.getElementById('formSuccessCard');
 
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevents redirecting to Formspree
+    e.preventDefault(); 
     
     const submitBtn = document.getElementById('cf-submit-btn');
     if (submitBtn) {
@@ -322,7 +277,6 @@ if (contactForm) {
       });
 
       if (response.ok) {
-        // Hide the form and show the Google Pay animation
         contactForm.style.display = 'none';
         formSuccessCard.style.display = 'flex';
       } else {
@@ -330,162 +284,152 @@ if (contactForm) {
         alert(data.errors ? data.errors.map(err => err.message).join(", ") : "Oops! There was a problem submitting your form.");
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = 'Send message';
+          submitBtn.innerHTML = `<span>Transmit Message</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>`;
         }
       }
     } catch (error) {
       alert("Network error. Please try again later.");
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Send message';
+        submitBtn.innerHTML = `<span>Transmit Message</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>`;
       }
     }
   });
 }
 
+// =============================
+// Chatbot Client Logic
+// =============================
 document.addEventListener("DOMContentLoaded", function() {
-    const chatHistory = document.getElementById("taran-chat-history");
-    const chatInput = document.getElementById("taran-chat-input");
-    const sendBtn = document.getElementById("taran-chat-send");
-    const toggleBtn = document.getElementById("taran-chatbot-toggle");
-    const closeBtn = document.getElementById("taran-chatbot-close");
-    const chatWindow = document.getElementById("taran-chatbot-window");
-    const trashBtn = document.querySelector(".trash-icon");
-    
-    // Cloudflare Worker Backend URL
-    const API_URL = "https://taran-rag-backend.staranveer178.workers.dev"; 
+  const chatHistory = document.getElementById("taran-chat-history");
+  const chatInput = document.getElementById("taran-chat-input");
+  const sendBtn = document.getElementById("taran-chat-send");
+  const toggleBtn = document.getElementById("taran-chatbot-toggle");
+  const closeBtn = document.getElementById("taran-chatbot-close");
+  const chatWindow = document.getElementById("taran-chatbot-window");
+  const trashBtn = document.querySelector(".trash-icon");
+  
+  const API_URL = "https://taran-rag-backend.staranveer178.workers.dev"; 
 
-    // ALWAYS start a fresh session on page load (No sessionStorage)
-    let chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
-    let userName = null;
+  let chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
+  let userName = null;
+  chatInput.placeholder = "Enter your name...";
+
+  toggleBtn.addEventListener("click", () => {
+    toggleBtn.classList.add("btn-hidden");
+    chatWindow.classList.remove("taran-chatbot-hidden");
+    chatInput.focus();
+  });
+  
+  closeBtn.addEventListener("click", () => {
+    chatWindow.classList.add("taran-chatbot-hidden");
+    toggleBtn.classList.remove("btn-hidden");
+  });
+
+  trashBtn.addEventListener("click", () => {
+    userName = null;
+    chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
     chatInput.placeholder = "Enter your name...";
-
-    // Toggle Chatbot Window
-    toggleBtn.addEventListener("click", () => {
-        toggleBtn.classList.add("btn-hidden");
-        chatWindow.classList.remove("taran-chatbot-hidden");
-        chatInput.focus();
-    });
     
-    closeBtn.addEventListener("click", () => {
-        chatWindow.classList.add("taran-chatbot-hidden");
-        toggleBtn.classList.remove("btn-hidden");
-    });
+    chatHistory.innerHTML = `
+      <div class="chat-message bot">
+        <img src="https://taranveer.in/img/chatbot.webp" class="chat-avatar bot-avatar" alt="Taran Avatar">
+        <div class="chat-bubble bot-bubble">Hi there! Welcome to Taran's portfolio. Before we begin, may I know your name?</div>
+      </div>`;
+  });
 
-    // Reset Chat (Trash Button) - Clears history AND resets the user session
-    trashBtn.addEventListener("click", () => {
-        userName = null;
-        chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
-        chatInput.placeholder = "Enter your name...";
-        
-        chatHistory.innerHTML = `
-            <div class="chat-message bot">
-                <img src="https://taranveer.in/img/chatbot.webp" class="chat-avatar bot-avatar" alt="Taran Avatar">
-                <div class="chat-bubble bot-bubble">Hi there! Welcome to Taran's portfolio. Before we begin, may I know your name?</div>
-            </div>`;
-    });
-    // Input Controls
-    chatInput.addEventListener("input", function() {
-        sendBtn.disabled = this.value.trim().length === 0;
-    });
+  chatInput.addEventListener("input", function() {
+    sendBtn.disabled = this.value.trim().length === 0;
+  });
 
-    chatInput.addEventListener("keypress", (e) => {
-        if (e.key === "Enter" && !sendBtn.disabled) sendMessage();
-    });
+  chatInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" && !sendBtn.disabled) sendMessage();
+  });
 
-    sendBtn.addEventListener("click", sendMessage);
+  sendBtn.addEventListener("click", sendMessage);
 
-    async function sendMessage() {
-        const text = chatInput.value.trim();
-        if (!text) return;
+  async function sendMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
 
-        addMessageUI("user", text);
-        chatInput.value = "";
-        sendBtn.disabled = true;
+    addMessageUI("user", text);
+    chatInput.value = "";
+    sendBtn.disabled = true;
 
-        // ============================================================
-        // STEP 1: If we don't have the user's name yet, capture it!
-        // ============================================================
-        if (!userName) {
-            // Clean up name (capitalize first letter)
-            const cleanName = text.replace(/^(my name is|i am|i'm)\s+/i, "").trim();
-            userName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
-            sessionStorage.setItem("taran_chat_user_name", userName);
+    if (!userName) {
+      const cleanName = text.replace(/^(my name is|i am|i'm)\s+/i, "").trim();
+      userName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+      sessionStorage.setItem("taran_chat_user_name", userName);
 
-            chatInput.placeholder = `Ask anything, ${userName}...`;
+      chatInput.placeholder = `Ask anything, ${userName}...`;
 
-            // Professional acknowledgement asking what they want to know
-            const welcomeBackMsg = `Nice to meet you, ${userName}! What would you like to know about Taran's work, skills, or projects?`;
+      const welcomeBackMsg = `Nice to meet you, ${userName}! What would you like to know about Taran's work, skills, or projects?`;
 
-            const typingId = "typing-" + Date.now();
-            const typingIndicatorHtml = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-            addMessageUI("bot", typingIndicatorHtml, typingId, true);
+      const typingId = "typing-" + Date.now();
+      const typingIndicatorHtml = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+      addMessageUI("bot", typingIndicatorHtml, typingId, true);
 
-            setTimeout(() => {
-                const typingElem = document.getElementById(typingId);
-                if (typingElem) typingElem.textContent = welcomeBackMsg;
-                chatHistory.scrollTop = chatHistory.scrollHeight;
-            }, 600);
-
-            // Log name capture to backend/D1 in the background
-            fetch(API_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    message: `[Visitor Name Provided: ${userName}]`,
-                    userName: userName,
-                    sessionId: chatSessionId,
-                    isIntro: true
-                })
-            }).catch(() => {});
-
-            return;
-        }
-
-        // ============================================================
-        // STEP 2: Normal AI Query with user's name attached
-        // ============================================================
-        const typingId = "typing-" + Date.now();
-        const typingIndicatorHtml = `
-          <div class="typing-dots">
-            <span></span><span></span><span></span>
-          </div>
-        `;
-        addMessageUI("bot", typingIndicatorHtml, typingId, true);
-
-       try {
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ 
-                message: text,
-                userName: userName,
-                sessionId: chatSessionId 
-            })
-        });
-
-        if (!response.ok) throw new Error("API Error");
-        const data = await response.json();
-        
-        // --- THIS PART IS STEP 3 ---
+      setTimeout(() => {
         const typingElem = document.getElementById(typingId);
-        if (typingElem) {
-            typingElem.classList.remove("typing-bubble"); // 1. Removes the tiny typing bubble size
-            typingElem.textContent = data.reply;          // 2. Inserts the bot's response text
-        }
-    } catch (error) {
-        // Also do it here in case the server has an error
-        const typingElem = document.getElementById(typingId);
-        if (typingElem) {
-            typingElem.classList.remove("typing-bubble");
-            typingElem.textContent = "Under development, please wait until 6:00 PM to finish updation.";
-        }
-    } finally {
+        if (typingElem) typingElem.textContent = welcomeBackMsg;
         chatHistory.scrollTop = chatHistory.scrollHeight;
-    }
+      }, 600);
+
+      fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          message: `[Visitor Name Provided: ${userName}]`,
+          userName: userName,
+          sessionId: chatSessionId,
+          isIntro: true
+        })
+      }).catch(() => {});
+
+      return;
     }
 
-    function addMessageUI(sender, content, textId = null, isHtml = false) {
+    const typingId = "typing-" + Date.now();
+    const typingIndicatorHtml = `
+      <div class="typing-dots">
+        <span></span><span></span><span></span>
+      </div>
+    `;
+    addMessageUI("bot", typingIndicatorHtml, typingId, true);
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          message: text,
+          userName: userName,
+          sessionId: chatSessionId 
+        })
+      });
+
+      if (!response.ok) throw new Error("API Error");
+      const data = await response.json();
+      
+      const typingElem = document.getElementById(typingId);
+      if (typingElem) {
+        typingElem.classList.remove("typing-bubble"); 
+        typingElem.textContent = data.reply;          
+      }
+    } catch (error) {
+      const typingElem = document.getElementById(typingId);
+      if (typingElem) {
+        typingElem.classList.remove("typing-bubble");
+        typingElem.textContent = "Under development, please wait until 6:00 PM to finish updation.";
+      }
+    } finally {
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+    }
+  }
+
+  function addMessageUI(sender, content, textId = null, isHtml = false) {
     const isUser = sender === "user";
     const avatarUrl = isUser ? "https://taranveer.in/img/user.webp" : "https://taranveer.in/img/chatbot.webp";
     
@@ -497,9 +441,9 @@ document.addEventListener("DOMContentLoaded", function() {
     if (textId) bubble.id = textId;
     
     if (isHtml) {
-        bubble.innerHTML = content;
+      bubble.innerHTML = content;
     } else {
-        bubble.textContent = content;
+      bubble.textContent = content;
     }
 
     const avatar = document.createElement("img");
@@ -512,6 +456,157 @@ document.addEventListener("DOMContentLoaded", function() {
     
     chatHistory.appendChild(msgDiv);
     chatHistory.scrollTop = chatHistory.scrollHeight;
-}
+  }
 });
 
+
+
+// =============================
+// Chatbot Client Logic (No Avatars)
+// =============================
+document.addEventListener("DOMContentLoaded", function() {
+  const chatHistory = document.getElementById("taran-chat-history");
+  const chatInput = document.getElementById("taran-chat-input");
+  const sendBtn = document.getElementById("taran-chat-send");
+  const toggleBtn = document.getElementById("taran-chatbot-toggle");
+  const closeBtn = document.getElementById("chat-close-btn");
+  const resetBtn = document.getElementById("chat-reset-btn");
+  const chatWindow = document.getElementById("taran-chatbot-window");
+  
+  const API_URL = "https://taran-rag-backend.staranveer178.workers.dev"; 
+
+  let chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
+  let userName = null;
+
+  // Open/Close logic
+  toggleBtn.addEventListener("click", () => {
+    toggleBtn.classList.add("chat-hidden");
+    chatWindow.classList.remove("chat-hidden");
+    chatInput.focus();
+  });
+  
+  closeBtn.addEventListener("click", () => {
+    chatWindow.classList.add("chat-hidden");
+    toggleBtn.classList.remove("chat-hidden");
+  });
+
+  // Reset logic
+  resetBtn.addEventListener("click", () => {
+    userName = null;
+    chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
+    chatInput.placeholder = "Type your name...";
+    chatHistory.innerHTML = `
+      <div class="msg-wrapper bot">
+        <div class="msg-bubble">Hello! I'm Taran's AI assistant. To personalize our chat, could you tell me your name?</div>
+      </div>`;
+  });
+
+  chatInput.addEventListener("input", function() {
+    sendBtn.disabled = this.value.trim().length === 0;
+  });
+
+  chatInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" && !sendBtn.disabled) sendMessage();
+  });
+
+  sendBtn.addEventListener("click", sendMessage);
+
+  async function sendMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    addMessageUI("user", text);
+    chatInput.value = "";
+    sendBtn.disabled = true;
+
+    // STEP 1: Name Capture
+    if (!userName) {
+      const cleanName = text.replace(/^(my name is|i am|i'm)\s+/i, "").trim();
+      userName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+      
+      chatInput.placeholder = `Ask anything, ${userName}...`;
+      const welcomeBackMsg = `Nice to meet you, ${userName}! What would you like to know about Taran's work, skills, or projects?`;
+
+      const typingId = "typing-" + Date.now();
+      addTypingIndicator(typingId);
+
+      setTimeout(() => {
+        removeTypingIndicator(typingId, welcomeBackMsg);
+      }, 600);
+
+      // Background tracking call
+      fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          message: `[Visitor Name Provided: ${userName}]`,
+          userName: userName,
+          sessionId: chatSessionId,
+          isIntro: true
+        })
+      }).catch(() => {});
+
+      return;
+    }
+
+    // STEP 2: Normal Query
+    const typingId = "typing-" + Date.now();
+    addTypingIndicator(typingId);
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          message: text,
+          userName: userName,
+          sessionId: chatSessionId 
+        })
+      });
+
+      if (!response.ok) throw new Error("API Error");
+      const data = await response.json();
+      removeTypingIndicator(typingId, data.reply);
+      
+    } catch (error) {
+      removeTypingIndicator(typingId, "Under development, please wait until 6:00 PM to finish updating.");
+    }
+  }
+
+  function addMessageUI(sender, content) {
+    const wrapperDiv = document.createElement("div");
+    wrapperDiv.className = `msg-wrapper ${sender}`;
+    
+    const bubble = document.createElement("div");
+    bubble.className = "msg-bubble";
+    bubble.textContent = content;
+
+    wrapperDiv.appendChild(bubble);
+    chatHistory.appendChild(wrapperDiv);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+  }
+
+  function addTypingIndicator(id) {
+    const wrapperDiv = document.createElement("div");
+    wrapperDiv.className = "msg-wrapper bot";
+    wrapperDiv.id = id;
+    
+    const bubble = document.createElement("div");
+    bubble.className = "msg-bubble typing-bubble";
+    bubble.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+
+    wrapperDiv.appendChild(bubble);
+    chatHistory.appendChild(wrapperDiv);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+  }
+
+  function removeTypingIndicator(id, newText) {
+    const wrapper = document.getElementById(id);
+    if (wrapper) {
+      const bubble = wrapper.querySelector(".msg-bubble");
+      bubble.classList.remove("typing-bubble");
+      bubble.textContent = newText;
+    }
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+  }
+});
