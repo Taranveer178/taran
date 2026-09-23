@@ -961,43 +961,322 @@ df-messenger::part(input-box):focus {
 }
 
 /*chatbot/*
+/* =========================================
+   Taran's AI Assistant - Chatbot Styling
+   ========================================= */
 
+/* Button & Layout */
+#taran-chatbot-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+  transition: transform 0.2s ease;
+}
 
-    /* Button & Layout */
-    #taran-chatbot-toggle { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; border-radius: 50%; background-color: #2563EB; color: white; border: none; box-shadow: 0 4px 14px rgba(0,0,0,0.18); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 9998; transition: transform 0.2s ease; }
-    #taran-chatbot-toggle.btn-hidden { display: none !important; }
-    #taran-chatbot-window { position: fixed; bottom: 20px; right: 20px; width: 360px; height: 600px; max-height: calc(100vh - 40px); background-color: #ffffff; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.22); display: flex; flex-direction: column; z-index: 9999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; transition: opacity 0.25s ease; }
-    .taran-chatbot-hidden { display: none !important; opacity: 0; pointer-events: none; }
-    
-    /* Header */
-    .taran-chatbot-header { background-color: #2563EB; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; color: white; border-radius: 16px 16px 0 0; }
-    .header-left { display: flex; align-items: center; gap: 12px; }
-    .header-avatar { width: 38px; height: 38px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.2); object-fit: contain; padding: 5px; }
-    .header-info { display: flex; flex-direction: column; }
-    .header-title { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.2; }
-    .header-status { display: flex; align-items: center; gap: 6px; margin-top: 3px; }
-    .status-dot { width: 8px; height: 8px; background-color: #22c55e; border-radius: 50%; }
-    .status-text { font-size: 12px; color: #e2e8f0; }
-    .header-right { display: flex; align-items: center; gap: 14px; }
-    .header-icon { cursor: pointer; opacity: 0.85; display: flex; align-items: center; }
+#taran-chatbot-toggle.btn-hidden {
+  display: none !important;
+}
 
-    /* Chat Area */
-    .taran-chatbot-body { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
-    .chat-history { flex: 1; padding: 20px 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
-    .chat-message { display: flex; align-items: flex-start; gap: 12px; width: 100%; }
-    .chat-message.user { flex-direction: row-reverse; }
-    .chat-avatar { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; }
-    .bot-avatar { background-color: #2563EB; padding: 6px; object-fit: contain; }
-    .user-avatar { object-fit: cover; margin-top: 10px; }
-    .chat-bubble { padding: 12px 16px; font-size: 14.5px; line-height: 1.5; max-width: 85%; word-wrap: break-word; white-space: pre-wrap; }
-    .bot-bubble { background-color: #F9FAFB; color: #1F2937; border: 1px solid #E5E7EB; border-radius: 0px 16px 16px 16px; align-self: flex-start; }
-    .user-bubble { background-color: #2563EB; color: white; border-radius: 16px 16px 0px 16px; align-self: flex-end; }
-    
-    /* Input */
-    .chat-input-area { padding: 15px; display: flex; gap: 10px; border-top: 1px solid #f3f4f6; }
-    #taran-chat-input { flex: 1; padding: 12px 16px; border: 1px solid #e5e7eb; border-radius: 8px; outline: none; font-size: 14.5px; }
-    #taran-chat-input:focus { border-color: #2563EB; box-shadow: 0 0 0 1px #2563EB; }
-    /* Circular Blue Send Button & Animations */
+#taran-chatbot-window {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 360px;
+  height: 600px;
+  max-height: calc(100vh - 40px);
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: opacity 0.25s ease;
+}
+
+.taran-chatbot-hidden {
+  display: none !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Header */
+.taran-chatbot-header {
+  background-color: #2563eb;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  border-radius: 16px 16px 0 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  object-fit: contain;
+  padding: 5px;
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #22c55e;
+  border-radius: 50%;
+}
+
+.status-text {
+  font-size: 12px;
+  color: #e2e8f0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-icon {
+  cursor: pointer;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #ffffff;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.header-icon:hover {
+  opacity: 1;
+}
+
+/* Modern, Highly Visible Touch-Target Close (Cross) Button */
+#taran-chatbot-close {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#taran-chatbot-close:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: scale(1.06);
+}
+
+#taran-chatbot-close:active {
+  transform: scale(0.94);
+  background: rgba(255, 255, 255, 0.38);
+}
+
+#taran-chatbot-close svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.3;
+  stroke: #ffffff;
+  display: block;
+}
+
+/* Chat Area */
+.taran-chatbot-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.chat-history {
+  flex: 1;
+  padding: 20px 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chat-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+.chat-message.user {
+  flex-direction: row-reverse;
+}
+
+.chat-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bot-avatar {
+  background-color: #2563eb;
+  padding: 6px;
+  object-fit: contain;
+}
+
+.user-avatar {
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+/* Message Bubble */
+.chat-bubble {
+  padding: 12px 16px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  width: fit-content !important;
+  max-width: 85% !important;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.bot-bubble {
+  background-color: #f9fafb;
+  color: #1f2937;
+  border: 1px solid #e5e7eb;
+  border-radius: 0px 16px 16px 16px;
+  align-self: flex-start;
+}
+
+.user-bubble {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-radius: 16px 16px 0px 16px;
+  align-self: flex-end;
+}
+
+/* Dedicated Compact Typing Indicator Bubble */
+.chat-bubble.typing-bubble {
+  padding: 10px 14px !important;
+  min-height: unset !important;
+  height: auto !important;
+  width: fit-content !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+}
+
+/* Typing Dots Container */
+.typing-dots {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4.5px !important;
+  height: 12px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+}
+
+.typing-dots span {
+  width: 6px !important;
+  height: 6px !important;
+  background-color: #6b7280 !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  opacity: 0.35;
+  animation: typingDotPulse 1.2s infinite ease-in-out;
+}
+
+.dark .typing-dots span {
+  background-color: #9ca3af !important;
+}
+
+.typing-dots span:nth-child(1) { animation-delay: 0s; }
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingDotPulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* Input Area */
+.chat-input-area {
+  padding: 15px;
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid #f3f4f6;
+}
+
+#taran-chat-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14.5px;
+}
+
+#taran-chat-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb;
+}
+
+/* Circular Blue Send Button */
 #taran-chat-send {
   width: 42px;
   height: 42px;
@@ -1015,13 +1294,11 @@ df-messenger::part(input-box):focus {
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
 }
 
-/* Slight icon offset for visual centering */
 #taran-chat-send svg {
   transform: translate(-1px, 1px);
   transition: transform 0.25s ease;
 }
 
-/* Hover Animation: lift, glow, and icon tilt */
 #taran-chat-send:not(:disabled):hover {
   background-color: #1d4ed8;
   transform: translateY(-2px) scale(1.05);
@@ -1032,82 +1309,52 @@ df-messenger::part(input-box):focus {
   transform: translate(0px, 0px) rotate(-6deg) scale(1.1);
 }
 
-/* Active / Click Animation: tap-down squeeze */
 #taran-chat-send:not(:disabled):active {
   transform: translateY(0) scale(0.94);
   box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
 }
 
-
-
-
-    @media (max-width: 480px) { #taran-chatbot-window { bottom: 0; right: 0; width: 100%; height: 100%; max-height: 100vh; border-radius: 0; } .taran-chatbot-header { border-radius: 0; } }
-
-/* Compact Typing Indicator */
-.typing-dots {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  height: 14px;
-  padding: 2px 4px;
-  line-height: 1;
-  white-space: nowrap; /* Prevents inheriting pre-wrap line heights */
-}
-
-.typing-dots span {
-  width: 6px;
-  height: 6px;
-  background-color: #6b7280;
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.3;
-  animation: typingDotPulse 1.2s infinite ease-in-out;
-}
-
-.dark .typing-dots span {
-  background-color: #9ca3af;
-}
-
-.typing-dots span:nth-child(1) { animation-delay: 0s; }
-.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes typingDotPulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(0.85);
+/* Responsive Mobile Rules */
+@media (max-width: 480px) {
+  #taran-chatbot-window {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    border-radius: 0;
   }
-  50% {
-    opacity: 1;
-    transform: scale(1.15);
+  .taran-chatbot-header {
+    border-radius: 0;
+    padding: 16px 20px;
+  }
+  #taran-chatbot-close {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
   }
 }
 
 /* =========================================
-   Chatbot Dark Mode Styles (Triggered by html.dark)
+   Chatbot Dark Mode Styles (html.dark)
    ========================================= */
-
-/* Chat Window Background & Border */
 .dark #taran-chatbot-window {
-  background-color: #111827; /* Dark slate */
+  background-color: #111827;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
   border: 1px solid #1f2937;
 }
 
-/* Bot Message Bubble & Text */
 .dark .bot-bubble {
   background-color: #1f2937;
   color: #f3f4f6;
   border-color: #374151;
 }
 
-/* Input Area Divider */
 .dark .chat-input-area {
   border-top-color: #1f2937;
 }
 
-/* Input Box */
 .dark #taran-chat-input {
   background-color: #1f2937;
   color: #f9fafb;
@@ -1123,12 +1370,6 @@ df-messenger::part(input-box):focus {
   box-shadow: 0 0 0 1px #3b82f6;
 }
 
-/* Typing Dots Color in Dark Mode */
-.dark .typing-dots span {
-  background-color: #9ca3af;
-}
-
-/* Chat History Scrollbar (Optional Polish) */
 .dark #taran-chat-history::-webkit-scrollbar {
   width: 6px;
 }
@@ -1137,60 +1378,3 @@ df-messenger::part(input-box):focus {
   background-color: #374151;
   border-radius: 4px;
 }
-
-
-
-/* Ensure bubbles shrink to fit their content */
-.chat-bubble {
-  width: fit-content !important;
-  max-width: 85% !important;
-  word-break: break-word;
-}
-
-/* Dedicated compact styling for the typing indicator bubble */
-.chat-bubble.typing-bubble {
-  padding: 10px 14px !important;
-  min-height: unset !important;
-  height: auto !important;
-  width: fit-content !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  line-height: 1 !important;
-}
-
-/* Tight container for the dots */
-.typing-dots {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 4px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  height: 10px !important;
-}
-
-.typing-dots span {
-  width: 6px !important;
-  height: 6px !important;
-  background-color: #9ca3af !important;
-  border-radius: 50% !important;
-  display: inline-block !important;
-  opacity: 0.4;
-  animation: typingDotPulse 1.2s infinite ease-in-out;
-}
-
-.typing-dots span:nth-child(1) { animation-delay: 0s; }
-.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes typingDotPulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(0.85);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.15);
-  }
-}
-
