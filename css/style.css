@@ -820,6 +820,109 @@ html.dark .contact-info > p { color: var(--text-muted); }
 @media (max-width: 768px) {
   .contact-info, .contact-form-wrap { padding: 40px 24px; }
 }
+/* Container swap */
+.form-success-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+  min-height: 380px;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.success-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  color: inherit;
+}
+
+.success-desc {
+  font-size: 0.95rem;
+  color: var(--text-faint, #64748b);
+  max-width: 320px;
+  line-height: 1.5;
+}
+
+/* Google Pay Animation Details */
+.gpay-success-wrapper {
+  width: 76px;
+  height: 76px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gpay-checkmark-svg {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 3.5;
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px #10b981;
+  animation: fillGreen 0.4s ease-in-out 0.4s forwards, scaleBounce 0.3s ease-in-out 0.9s both;
+}
+
+.gpay-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 3.5;
+  stroke: #10b981;
+  fill: none;
+  animation: strokeCircle 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.gpay-check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  stroke: #ffffff; /* Contrast on green background */
+  animation: strokeCheck 0.35s cubic-bezier(0.65, 0, 0.45, 1) 0.65s forwards;
+}
+
+/* Keyframes */
+@keyframes strokeCircle {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes strokeCheck {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillGreen {
+  100% {
+    box-shadow: inset 0px 0px 0px 40px #10b981;
+  }
+}
+
+@keyframes scaleBounce {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /* End of Contact Section */
 
 /* ============================= */
