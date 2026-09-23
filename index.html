@@ -84,7 +84,7 @@
         <a href="#experience" class="btn btn-primary">Career History</a>
         <a href="/assets/Taranveer_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="margin-right:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Official CV
+          Download CV
         </a>
       </div>
       <div class="hero-socials">
@@ -810,7 +810,7 @@
 </footer>
 
 <!-- =========================================
-     Premium AI Assistant (No Avatars)
+     Premium AI Assistant (With Snapchat Bitmoji Peek)
      ========================================= -->
 <!-- 1. Floating Toggle Button -->
 <button id="taran-chatbot-toggle" class="chat-toggle-btn" aria-label="Open Chat">
@@ -848,10 +848,22 @@
     </div>
   </div>
 
-  <!-- Body (Messages) -->
-  <div class="chat-body" id="taran-chat-history">
-    <div class="msg-wrapper bot">
-      <div class="msg-bubble">Hello! I'm Taran's AI assistant. To personalize our chat, could you tell me your name?</div>
+  <!-- Body (Messages & Snapchat Indicator) -->
+  <div class="chat-body-wrapper">
+    <div class="chat-body" id="taran-chat-history">
+      <div class="msg-wrapper bot">
+        <div class="msg-bubble">Hello! I'm Taran's AI assistant. To personalize our chat, could you tell me your name?</div>
+      </div>
+    </div>
+
+    <!-- Snapchat-style Bitmoji Peeking Indicator -->
+    <div id="bitmoji-indicator" class="bitmoji-indicator">
+      <img src="img/chatbot emoji.webp" alt="AI is typing" class="bitmoji-avatar">
+      <div class="bitmoji-bubble">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
     </div>
   </div>
 

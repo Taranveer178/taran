@@ -1006,7 +1006,7 @@ html.dark .footer-logo.logo-light-mode { display: none !important; }
 .chat-header {
   display: flex; justify-content: space-between; align-items: center;
   padding: 18px 20px; border-bottom: 1px solid var(--surface-border);
-  background: var(--surface);
+  background: var(--surface); z-index: 2;
 }
 .chat-header-info { display: flex; align-items: center; gap: 12px; }
 .chat-header-icon {
@@ -1028,7 +1028,15 @@ html.dark .footer-logo.logo-light-mode { display: none !important; }
 }
 .chat-action-btn:hover { background: var(--bg-soft); color: var(--text); }
 
-/* Body & Messages */
+/* Body & Messages Wrapper */
+.chat-body-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Keeps the bitmoji positioned correctly */
+  overflow: hidden; /* Hides the bitmoji when it drops down */
+}
+
 .chat-body {
   flex: 1; padding: 20px; overflow-y: auto;
   display: flex; flex-direction: column; gap: 16px; scrollbar-width: thin;
@@ -1036,6 +1044,7 @@ html.dark .footer-logo.logo-light-mode { display: none !important; }
 .chat-body::-webkit-scrollbar { width: 6px; }
 .chat-body::-webkit-scrollbar-thumb { background-color: var(--surface-border); border-radius: 10px; }
 
+/* Clean Message Bubbles (No Avatars) */
 .msg-wrapper { display: flex; width: 100%; }
 .msg-wrapper.user { justify-content: flex-end; }
 .msg-wrapper.bot { justify-content: flex-start; }
@@ -1046,24 +1055,64 @@ html.dark .footer-logo.logo-light-mode { display: none !important; }
 }
 .msg-wrapper.user .msg-bubble {
   background: var(--accent); color: #fff;
-  border-radius: 18px 18px 4px 18px; /* Tail points bottom-right */
+  border-radius: 18px 18px 4px 18px;
   box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 25%, transparent);
 }
 .msg-wrapper.bot .msg-bubble {
   background: var(--bg-soft); color: var(--text);
   border: 1px solid var(--surface-border);
-  border-radius: 18px 18px 18px 4px; /* Tail points bottom-left */
+  border-radius: 18px 18px 18px 4px;
 }
 
-/* Typing Indicator inside Bubble */
-.msg-wrapper.bot .msg-bubble.typing-bubble { padding: 14px 18px; display: flex; align-items: center; gap: 4px; min-height: 44px; }
-.typing-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); animation: chatPulse 1.4s infinite ease-in-out both; }
+/* =========================================
+   Snapchat-Style Peeking Bitmoji Indicator
+   ========================================= */
+.bitmoji-indicator {
+  position: absolute;
+  bottom: -4px; /* Rests perfectly on the footer border */
+  left: 20px;
+  display: flex; align-items: flex-end; gap: 8px;
+  transform: translateY(120%); /* Hidden by default */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Creates the bounce pop-up effect */
+  z-index: 10;
+  pointer-events: none;
+}
+.bitmoji-indicator.is-typing {
+  transform: translateY(0);
+}
+
+.bitmoji-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--surface-strong);
+  border: 1px solid var(--surface-border);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  object-fit: contain;
+  padding: 4px;
+}
+
+.bitmoji-bubble {
+  background: var(--surface-strong);
+  border: 1px solid var(--surface-border);
+  padding: 10px 14px;
+  border-radius: 18px 18px 18px 4px;
+  display: flex; gap: 4px; align-items: center;
+  margin-bottom: 24px; /* Lifts the thought bubble slightly higher than the avatar */
+  box-shadow: var(--shadow-lift);
+}
+
+.typing-dot { 
+  width: 6px; height: 6px; border-radius: 50%; 
+  background: var(--text-muted); 
+  animation: chatPulse 1.4s infinite ease-in-out both; 
+}
 .typing-dot:nth-child(1) { animation-delay: -0.32s; }
 .typing-dot:nth-child(2) { animation-delay: -0.16s; }
 @keyframes chatPulse { 0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; } 40% { transform: scale(1); opacity: 1; } }
 
+
 /* Footer / Input Area */
-.chat-footer { padding: 16px 20px; border-top: 1px solid var(--surface-border); background: var(--surface); }
+.chat-footer { padding: 16px 20px; border-top: 1px solid var(--surface-border); background: var(--surface); z-index: 2; }
 .chat-input-wrapper {
   display: flex; align-items: center; background: var(--bg);
   border: 1px solid var(--surface-border); border-radius: 100px; padding: 4px 4px 4px 16px;

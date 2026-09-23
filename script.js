@@ -462,7 +462,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // =============================
-// Chatbot Client Logic (No Avatars)
+// Chatbot Client Logic (Snapchat Bitmoji Feature)
 // =============================
 document.addEventListener("DOMContentLoaded", function() {
   const chatHistory = document.getElementById("taran-chat-history");
@@ -472,6 +472,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const closeBtn = document.getElementById("chat-close-btn");
   const resetBtn = document.getElementById("chat-reset-btn");
   const chatWindow = document.getElementById("taran-chatbot-window");
+  const bitmojiIndicator = document.getElementById("bitmoji-indicator");
   
   const API_URL = "https://taran-rag-backend.staranveer178.workers.dev"; 
 
@@ -511,10 +512,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
   sendBtn.addEventListener("click", sendMessage);
 
+  // Trigger Snapchat Animation
+  function showBitmojiTyping() {
+    bitmojiIndicator.classList.add("is-typing");
+    // Scroll chat down slightly so the bitmoji doesn't cover the last message
+    setTimeout(() => {
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+    }, 50);
+  }
+
+  function hideBitmojiTyping() {
+    bitmojiIndicator.classList.remove("is-typing");
+  }
+
   async function sendMessage() {
     const text = chatInput.value.trim();
     if (!text) return;
 
+    // Show User Message
     addMessageUI("user", text);
     chatInput.value = "";
     sendBtn.disabled = true;
@@ -527,12 +542,14 @@ document.addEventListener("DOMContentLoaded", function() {
       chatInput.placeholder = `Ask anything, ${userName}...`;
       const welcomeBackMsg = `Nice to meet you, ${userName}! What would you like to know about Taran's work, skills, or projects?`;
 
-      const typingId = "typing-" + Date.now();
-      addTypingIndicator(typingId);
+      showBitmojiTyping();
 
       setTimeout(() => {
-        removeTypingIndicator(typingId, welcomeBackMsg);
-      }, 600);
+        hideBitmojiTyping();
+        setTimeout(() => {
+          addMessageUI("bot", welcomeBackMsg);
+        }, 200); // Small delay to let the bitmoji drop before message appears
+      }, 1000);
 
       // Background tracking call
       fetch(API_URL, {
@@ -550,8 +567,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // STEP 2: Normal Query
-    const typingId = "typing-" + Date.now();
-    addTypingIndicator(typingId);
+    showBitmojiTyping();
 
     try {
       const response = await fetch(API_URL, {
@@ -566,10 +582,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
       if (!response.ok) throw new Error("API Error");
       const data = await response.json();
-      removeTypingIndicator(typingId, data.reply);
+      
+      hideBitmojiTyping();
+      setTimeout(() => {
+        addMessageUI("bot", data.reply);
+      }, 300);
       
     } catch (error) {
-      removeTypingIndicator(typingId, "Under development, please wait until 6:00 PM to finish updating.");
+      hideBitmojiTyping();
+      setTimeout(() => {
+        addMessageUI("bot", "Under development, please wait until 6:00 PM to finish updating.");
+      }, 300);
     }
   }
 
@@ -583,30 +606,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     wrapperDiv.appendChild(bubble);
     chatHistory.appendChild(wrapperDiv);
-    chatHistory.scrollTop = chatHistory.scrollHeight;
-  }
-
-  function addTypingIndicator(id) {
-    const wrapperDiv = document.createElement("div");
-    wrapperDiv.className = "msg-wrapper bot";
-    wrapperDiv.id = id;
     
-    const bubble = document.createElement("div");
-    bubble.className = "msg-bubble typing-bubble";
-    bubble.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
-
-    wrapperDiv.appendChild(bubble);
-    chatHistory.appendChild(wrapperDiv);
-    chatHistory.scrollTop = chatHistory.scrollHeight;
-  }
-
-  function removeTypingIndicator(id, newText) {
-    const wrapper = document.getElementById(id);
-    if (wrapper) {
-      const bubble = wrapper.querySelector(".msg-bubble");
-      bubble.classList.remove("typing-bubble");
-      bubble.textContent = newText;
-    }
-    chatHistory.scrollTop = chatHistory.scrollHeight;
+    // Auto-scroll logic
+    setTimeout(() => {
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+    }, 50);
   }
 });
