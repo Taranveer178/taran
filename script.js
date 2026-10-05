@@ -147,7 +147,12 @@ function initializeProjectSlider(sliderId, prevBtnId, nextBtnId, dotsContainerId
 }
 
 // Init sliders for the 3 distinct projects
-initializeProjectSlider('lmsSlider', 'lmsPrev', 'lmsNext', 'lmsDots');
+initializeProjectSlider(
+  document.querySelector('.slider-2-track').id = 'lmsSliderTrack',
+  document.querySelector('.btn-slider-2.prev').id = 'lmsSliderPrev',
+  document.querySelector('.btn-slider-2.next').id = 'lmsSliderNext',
+  document.querySelector('.dots-2').id = 'lmsSliderDots'
+);
 // For Project 1 (RAG Bot)
 initializeProjectSlider(
   document.querySelector('.slider-1-track').id = 'ragSliderTrack',

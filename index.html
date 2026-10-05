@@ -265,8 +265,8 @@
                 <span class="status-dot"></span>
                 AI Application • LLM Integration
               </div>
-              <h4>Taran's AI Assistant (RAG Bot)</h4>
-              <p>An intelligent chatbot powered by generative AI that reads curriculum vitae contexts to answer user queries.</p>
+              <h4>Taran's AI Assistants (RAG)</h4>
+              <p>Two retrieval-augmented assistants that answer questions using my curriculum vitae: one runs serverlessly on Cloudflare and the other uses a traditional Streamlit deployment.</p>
             </div>
 
             <div class="fp-image-wrap slider-container">
@@ -294,11 +294,11 @@
             </div>
 
             <div class="fp-actions" style="margin-top: 24px;">
-              <!-- Clicking this will open the chatbot on your site -->
               <button onclick="document.getElementById('taran-chatbot-toggle').click();" class="btn btn-primary">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" style="margin-right:6px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                Try the Live Bot Now
+                Try Cloudflare RAG
               </button>
+              <a href="https://taranveer.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Try Streamlit RAG</a>
             </div>
           </div>
 
@@ -306,7 +306,7 @@
           <div class="fp-content">
             <div class="fp-note glass">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-              <p><strong>System Objective:</strong> Develop an automated AI agent using RAG (Retrieval-Augmented Generation) to interact with site visitors conversationally.</p>
+              <p><strong>System Objective:</strong> Build two live RAG assistants that retrieve relevant CV information and answer visitor questions conversationally.</p>
             </div>
 
             <h3 class="fp-title">Key Architectural Features</h3>
@@ -321,11 +321,15 @@
               </li>
               <li>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                <span><strong>Serverless Deployment:</strong> Hosted as a secure backend on Cloudflare Workers edge network.</span>
+                <span><strong>Serverless RAG:</strong> The Cloudflare Workers deployment serves the chatbot through a serverless edge backend.</span>
               </li>
               <li>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                <span><strong>Session Memory:</strong> Employs unique session tracking to maintain contextual conversations securely over REST.</span>
+                <span><strong>Traditional Deployment:</strong> A separate version is hosted on Streamlit at <a href="https://taranveer.streamlit.app/" target="_blank" rel="noopener noreferrer">taranveer.streamlit.app</a>.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                <span><strong>Session Memory:</strong> Employs unique session tracking to maintain contextual conversations securely.</span>
               </li>
             </ul>
 
@@ -419,7 +423,7 @@
       </div>
 
       <!-- PROJECT 3: RoomSplit -->
-      <div class="fp-card glass reveal" style="display:none;"">
+      <div class="fp-card glass reveal">
         <div class="fp-grid">
           <!-- Visual Side (Left) -->
           <div class="fp-visual">
@@ -429,7 +433,7 @@
                 Frontend SPA • Utility App
               </div>
               <h4>RoomSplit</h4>
-              <p>A React-based shared expense management application designed for roommates and groups.</p>
+              <p>A shared household-expense app for roommates and small groups, with expense tracking, settlements, group chat, and activity insights.</p>
             </div>
 
             <div class="fp-image-wrap slider-container">
@@ -449,9 +453,10 @@
             </div>
             
             <div class="fp-tech-stack">
-              <span class="tech-pill js">React.js</span>
-              <span class="tech-pill js">JSX</span>
-              <span class="tech-pill css">CSS3</span>
+              <span class="tech-pill js">React</span>
+              <span class="tech-pill js">Firebase</span>
+              <span class="tech-pill css">Firestore</span>
+              <span class="tech-pill css">Local Storage</span>
             </div>
 
             <div class="fp-actions" style="margin-top: 24px;">
@@ -466,22 +471,30 @@
           <div class="fp-content">
             <div class="fp-note glass">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-              <p><strong>System Objective:</strong> Provide a fast, client-side utility to manage multi-party expenses and simplify balance calculations dynamically.</p>
+              <p><strong>System Objective:</strong> Help roommates and small groups track shared costs, understand balances, and settle up.</p>
             </div>
 
             <h3 class="fp-title">Key Architectural Features</h3>
             <ul class="fp-features">
               <li>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                <span><strong>Component-Based UI:</strong> Built with React for snappy, reusable, and state-driven interface components.</span>
+                <span><strong>Groups & Expenses:</strong> Create groups or join by invite code; record expenses with equal or custom participant shares.</span>
               </li>
               <li>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                <span><strong>Mathematical Algorithms:</strong> Implements logic to track individual contributions and output precise debt resolutions.</span>
+                <span><strong>Balances & Settlements:</strong> Review group balances, share UPI payment links, record payments, and confirm received amounts.</span>
               </li>
               <li>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                <span><strong>State Management:</strong> Ensures instant data propagation across the DOM without reloading pages.</span>
+                <span><strong>Group Chat:</strong> Exchange real-time messages, emoji, stickers, and image, audio, or video attachments when Firebase is configured.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                <span><strong>Dashboard & Admin:</strong> Review activity, notifications, monthly spending, and category breakdowns; manage app records through a separate admin console.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                <span><strong>Flexible Data & Notifications:</strong> Core records fall back to local storage; install prompts and push notifications are available when configured.</span>
               </li>
             </ul>
           </div>
