@@ -559,9 +559,9 @@ html.dark .logo-light-mode { display: none; }
   }
   .slider-dot {
     position: relative;
-    flex: 0 0 24px;
-    width: 24px;
-    height: 24px;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: transparent;
     border: none;
@@ -571,7 +571,7 @@ html.dark .logo-light-mode { display: none; }
   .slider-dot::before {
     content: '';
     position: absolute;
-    inset: 8px;
+    inset: 17px;
     border-radius: 50%;
     background: var(--surface-border);
     transition: inset 0.3s cubic-bezier(0.2, 0.7, 0.3, 1), border-radius 0.3s ease, background 0.3s ease;
@@ -580,7 +580,7 @@ html.dark .logo-light-mode { display: none; }
     background: transparent;
   }
   .slider-dot.active::before {
-    inset: 8px 4px;
+    inset: 17px 12px;
     border-radius: 8px;
     background: var(--accent);
   }
@@ -681,7 +681,7 @@ html.dark .logo-light-mode { display: none; }
 .fp-slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .fp-slide { min-width: 100%; height: 100%; object-fit: cover; }
 .fp-slider-btn {
-  position: absolute; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%;
+  position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%;
   background: rgba(18, 20, 28, 0.6); backdrop-filter: blur(8px); color: #fff;
   display: flex; align-items: center; justify-content: center;
   opacity: 0; transition: opacity 0.3s ease, background 0.3s ease, transform 0.2s ease;
@@ -693,14 +693,14 @@ html.dark .logo-light-mode { display: none; }
 .fp-slider-btn svg { width: 18px; height: 18px; }
 .fp-slider-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 4px; }
 .fp-dot {
-  position: relative; flex: 0 0 24px; width: 24px; height: 24px; padding: 0; border: 0;
+  position: relative; flex: 0 0 44px; width: 44px; height: 44px; padding: 0; border: 0;
   border-radius: 50%; background: transparent; cursor: pointer;
 }
 .fp-dot::before {
-  content: ''; position: absolute; inset: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.65);
+  content: ''; position: absolute; inset: 17px; border-radius: 50%; background: rgba(255, 255, 255, 0.65);
   transition: inset 0.3s ease, border-radius 0.3s ease, background 0.3s ease;
 }
-.fp-dot.active::before { inset: 8px 4px; border-radius: 8px; background: #fff; }
+.fp-dot.active::before { inset: 17px 12px; border-radius: 8px; background: #fff; }
 
 /* Interactive Tech Stack Pills */
 .fp-tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
@@ -972,7 +972,7 @@ html.dark .footer-logo.logo-light-mode { display: none !important; }
 .footer-contact-item svg { width: 18px; height: 18px; margin-top: 2px; color: var(--accent); flex-shrink: 0; }
 .footer-bottom {
   border-top: 1px solid var(--surface-border); padding: 24px 0; display: flex; justify-content: space-between;
-  align-items: center; flex-wrap: wrap; gap: 16px; font-size: 13.5px; color: var(--text-muted);
+  align-items: center; flex-wrap: wrap; gap: 16px; font-size: 13.5px; color: var(--text);
 }
 .footer-bottom-links { display: flex; gap: 24px; flex-wrap: wrap; }
 .footer-bottom-links a { transition: color 0.2s ease; }

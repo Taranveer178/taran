@@ -189,15 +189,20 @@ function initInfiniteSliderDots(sliderId, dotsContainerId) {
   const totalOriginal = originalSlides.length;
   if (totalOriginal <= 1) return;
 
+  let slideWidth = 0;
+  const updateSlideWidth = () => {
+    slideWidth = originalSlides[0].offsetWidth + 16;
+  };
+
   dotsContainer.innerHTML = '';
   for (let i = 0; i < totalOriginal; i++) {
     const dot = document.createElement('button');
+    dot.type = 'button';
     dot.classList.add('slider-dot');
     dot.setAttribute('aria-label', `Slide ${i + 1}`);
     if (i === 0) dot.classList.add('active');
 
     dot.addEventListener('click', () => {
-      const slideWidth = originalSlides[0].offsetWidth + 16;
       slider.scrollTo({
         left: (totalOriginal + i) * slideWidth,
         behavior: 'smooth'
@@ -219,24 +224,24 @@ function initInfiniteSliderDots(sliderId, dotsContainerId) {
     slider.appendChild(clonePost);
   });
 
-  const getSlideWidth = () => originalSlides[0].offsetWidth + 16;
+  updateSlideWidth();
 
   const initialOffset = () => {
+    updateSlideWidth();
     if (window.innerWidth <= 768) {
-      slider.scrollLeft = totalOriginal * getSlideWidth();
+      slider.scrollLeft = totalOriginal * slideWidth;
     } else {
       slider.scrollLeft = 0;
     }
   };
 
-  setTimeout(initialOffset, 50);
+  requestAnimationFrame(initialOffset);
 
   let isResetting = false;
 
   slider.addEventListener('scroll', () => {
     if (window.innerWidth > 768 || isResetting) return;
 
-    const slideWidth = getSlideWidth();
     const currentScroll = slider.scrollLeft;
     const totalSetWidth = totalOriginal * slideWidth;
 
@@ -316,169 +321,6 @@ if (contactForm) {
 }
 
 // =============================
-// Chatbot Client Logic
-// =============================
-document.addEventListener("DOMContentLoaded", function() {
-  const chatHistory = document.getElementById("taran-chat-history");
-  const chatInput = document.getElementById("taran-chat-input");
-  const sendBtn = document.getElementById("taran-chat-send");
-  const toggleBtn = document.getElementById("taran-chatbot-toggle");
-  const closeBtn = document.getElementById("taran-chatbot-close");
-  const chatWindow = document.getElementById("taran-chatbot-window");
-  const trashBtn = document.querySelector(".trash-icon");
-  
-  const API_URL = "https://taran-rag-backend.staranveer178.workers.dev"; 
-
-  let chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
-  let userName = null;
-  if (!closeBtn || !trashBtn) return;
-  chatInput.placeholder = "Enter your name...";
-
-  toggleBtn.addEventListener("click", () => {
-    toggleBtn.classList.add("btn-hidden");
-    chatWindow.classList.remove("taran-chatbot-hidden");
-    chatInput.focus();
-  });
-  
-  closeBtn.addEventListener("click", () => {
-    chatWindow.classList.add("taran-chatbot-hidden");
-    toggleBtn.classList.remove("btn-hidden");
-  });
-
-  trashBtn.addEventListener("click", () => {
-    userName = null;
-    chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
-    chatInput.placeholder = "Enter your name...";
-    
-    chatHistory.innerHTML = `
-      <div class="chat-message bot">
-        <img src="https://taranveer.in/img/chatbot.webp" class="chat-avatar bot-avatar" alt="Taran Avatar">
-        <div class="chat-bubble bot-bubble">Hi there! Welcome to Taran's portfolio. Before we begin, may I know your name?</div>
-      </div>`;
-  });
-
-  chatInput.addEventListener("input", function() {
-    sendBtn.disabled = this.value.trim().length === 0;
-  });
-
-  chatInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter" && !sendBtn.disabled) sendMessage();
-  });
-
-  sendBtn.addEventListener("click", sendMessage);
-
-  async function sendMessage() {
-    const text = chatInput.value.trim();
-    if (!text) return;
-
-    addMessageUI("user", text);
-    chatInput.value = "";
-    sendBtn.disabled = true;
-
-    if (!userName) {
-      const cleanName = text.replace(/^(my name is|i am|i'm)\s+/i, "").trim();
-      userName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
-      sessionStorage.setItem("taran_chat_user_name", userName);
-
-      chatInput.placeholder = `Ask anything, ${userName}...`;
-
-      const welcomeBackMsg = `Nice to meet you, ${userName}! What would you like to know about Taran's work, skills, or projects?`;
-
-      const typingId = "typing-" + Date.now();
-      const typingIndicatorHtml = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-      addMessageUI("bot", typingIndicatorHtml, typingId, true);
-
-      setTimeout(() => {
-        const typingElem = document.getElementById(typingId);
-        if (typingElem) typingElem.textContent = welcomeBackMsg;
-        chatHistory.scrollTop = chatHistory.scrollHeight;
-      }, 600);
-
-      fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          message: `[Visitor Name Provided: ${userName}]`,
-          userName: userName,
-          sessionId: chatSessionId,
-          isIntro: true
-        })
-      }).catch(() => {});
-
-      return;
-    }
-
-    const typingId = "typing-" + Date.now();
-    const typingIndicatorHtml = `
-      <div class="typing-dots">
-        <span></span><span></span><span></span>
-      </div>
-    `;
-    addMessageUI("bot", typingIndicatorHtml, typingId, true);
-
-    try {
-      const response = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          message: text,
-          userName: userName,
-          sessionId: chatSessionId 
-        })
-      });
-
-      if (!response.ok) throw new Error("API Error");
-      const data = await response.json();
-      
-      const typingElem = document.getElementById(typingId);
-      if (typingElem) {
-        typingElem.classList.remove("typing-bubble"); 
-        typingElem.textContent = data.reply;          
-      }
-    } catch (error) {
-      const typingElem = document.getElementById(typingId);
-      if (typingElem) {
-        typingElem.classList.remove("typing-bubble");
-        typingElem.textContent = "Under development, please wait until 6:00 PM to finish updation.";
-      }
-    } finally {
-      chatHistory.scrollTop = chatHistory.scrollHeight;
-    }
-  }
-
-  function addMessageUI(sender, content, textId = null, isHtml = false) {
-    const isUser = sender === "user";
-    const avatarUrl = isUser ? "https://taranveer.in/img/user.webp" : "https://taranveer.in/img/chatbot.webp";
-    
-    const msgDiv = document.createElement("div");
-    msgDiv.className = `chat-message ${sender}`;
-    
-    const bubble = document.createElement("div");
-    bubble.className = `chat-bubble ${sender}-bubble${isHtml ? ' typing-bubble' : ''}`;
-    if (textId) bubble.id = textId;
-    
-    if (isHtml) {
-      bubble.innerHTML = content;
-    } else {
-      bubble.textContent = content;
-    }
-
-    const avatar = document.createElement("img");
-    avatar.src = avatarUrl;
-    avatar.className = `chat-avatar ${sender}-avatar`;
-    avatar.alt = sender;
-
-    msgDiv.appendChild(avatar);
-    msgDiv.appendChild(bubble);
-    
-    chatHistory.appendChild(msgDiv);
-    chatHistory.scrollTop = chatHistory.scrollHeight;
-  }
-});
-
-
-
-// =============================
 // Chatbot Client Logic (Snapchat Bitmoji Feature)
 // =============================
 document.addEventListener("DOMContentLoaded", function() {
@@ -490,6 +332,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const resetBtn = document.getElementById("chat-reset-btn");
   const chatWindow = document.getElementById("taran-chatbot-window");
   const bitmojiIndicator = document.getElementById("bitmoji-indicator");
+  if (!chatHistory || !chatInput || !sendBtn || !toggleBtn || !closeBtn || !resetBtn || !chatWindow || !bitmojiIndicator) return;
   
   const API_URL = "https://taran-rag-backend.staranveer178.workers.dev"; 
 
