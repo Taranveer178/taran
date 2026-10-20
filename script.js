@@ -190,9 +190,6 @@ function initInfiniteSliderDots(sliderId, dotsContainerId) {
   if (totalOriginal <= 1) return;
 
   let slideWidth = 0;
-  const updateSlideWidth = () => {
-    slideWidth = originalSlides[0].offsetWidth + 16;
-  };
 
   dotsContainer.innerHTML = '';
   for (let i = 0; i < totalOriginal; i++) {
@@ -203,10 +200,12 @@ function initInfiniteSliderDots(sliderId, dotsContainerId) {
     if (i === 0) dot.classList.add('active');
 
     dot.addEventListener('click', () => {
-      slider.scrollTo({
-        left: (totalOriginal + i) * slideWidth,
-        behavior: 'smooth'
-      });
+      const targetScroll = (totalOriginal + i) * slideWidth;
+      if (window.innerWidth <= 768) {
+        slider.scrollLeft = targetScroll;
+      } else {
+        slider.scrollTo({ left: targetScroll, behavior: 'smooth' });
+      }
     });
 
     dotsContainer.appendChild(dot);
@@ -224,10 +223,8 @@ function initInfiniteSliderDots(sliderId, dotsContainerId) {
     slider.appendChild(clonePost);
   });
 
-  updateSlideWidth();
-
   const initialOffset = () => {
-    updateSlideWidth();
+    if (!slideWidth) return;
     if (window.innerWidth <= 768) {
       slider.scrollLeft = totalOriginal * slideWidth;
     } else {
@@ -235,7 +232,18 @@ function initInfiniteSliderDots(sliderId, dotsContainerId) {
     }
   };
 
-  requestAnimationFrame(initialOffset);
+  const slideResizeObserver = new ResizeObserver(entries => {
+    const entry = entries[0];
+    if (!entry) return;
+
+    const borderBox = entry.borderBoxSize;
+    const slideWidthFromObserver = borderBox && borderBox.length
+      ? borderBox[0].inlineSize
+      : entry.target.offsetWidth;
+    slideWidth = slideWidthFromObserver + 16;
+    initialOffset();
+  });
+  slideResizeObserver.observe(originalSlides[0]);
 
   let isResetting = false;
 
@@ -264,7 +272,6 @@ function initInfiniteSliderDots(sliderId, dotsContainerId) {
     }
   }, { passive: true });
 
-  window.addEventListener('resize', initialOffset);
 }
 
 initInfiniteSliderDots('servicesSlider', 'servicesDots');

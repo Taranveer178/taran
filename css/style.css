@@ -1160,3 +1160,13 @@ html.dark .footer-logo.logo-light-mode { display: none !important; }
   .chat-header { border-radius: 0; padding: 16px 20px; }
   .chat-toggle-btn { bottom: 16px; right: 16px; width: 56px; height: 56px; }
 }
+
+@media (max-width: 768px) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
