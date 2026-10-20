@@ -104,9 +104,14 @@ function initializeProjectSlider(sliderId, prevBtnId, nextBtnId, dotsContainerId
   let slideInterval;
 
   slides.forEach((_, index) => {
-    const dot = document.createElement('div');
+    const dot = document.createElement('button');
+    dot.type = 'button';
     dot.classList.add('fp-dot');
-    if (index === 0) dot.classList.add('active');
+    dot.setAttribute('aria-label', `Show screenshot ${index + 1}`);
+    if (index === 0) {
+      dot.classList.add('active');
+      dot.setAttribute('aria-current', 'true');
+    }
     dot.addEventListener('click', () => goToSlide(index));
     dotsContainer.appendChild(dot);
   });
@@ -115,8 +120,14 @@ function initializeProjectSlider(sliderId, prevBtnId, nextBtnId, dotsContainerId
 
   function updateSlider() {
     sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-    dots.forEach(dot => dot.classList.remove('active'));
-    dots[currentSlide].classList.add('active');
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+      if (index === currentSlide) {
+        dot.setAttribute('aria-current', 'true');
+      } else {
+        dot.removeAttribute('aria-current');
+      }
+    });
   }
 
   function nextSlide() {
@@ -320,6 +331,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   let chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
   let userName = null;
+  if (!closeBtn || !trashBtn) return;
   chatInput.placeholder = "Enter your name...";
 
   toggleBtn.addEventListener("click", () => {
