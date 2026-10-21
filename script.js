@@ -239,7 +239,7 @@ function initInfiniteSliderDots(sliderId, dotsContainerId) {
     const borderBox = entry.borderBoxSize;
     const slideWidthFromObserver = borderBox && borderBox.length
       ? borderBox[0].inlineSize
-      : entry.target.offsetWidth;
+      : entry.contentRect.width;
     slideWidth = slideWidthFromObserver + 16;
     initialOffset();
   });
