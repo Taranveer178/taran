@@ -331,19 +331,34 @@ document.addEventListener("DOMContentLoaded", function() {
   const resetBtn = document.getElementById("chat-reset-btn");
   const chatWindow = document.getElementById("taran-chatbot-window");
   const bitmojiIndicator = document.getElementById("bitmoji-indicator");
-  if (!chatHistory || !chatInput || !sendBtn || !toggleBtn || !closeBtn || !resetBtn || !chatWindow || !bitmojiIndicator) return;
+  const chatPrompt = document.getElementById("chat-prompt");
+  const chatPromptOpen = document.getElementById("chat-prompt-open");
+  const chatPromptClose = document.getElementById("chat-prompt-close");
+  if (!chatHistory || !chatInput || !sendBtn || !toggleBtn || !closeBtn || !resetBtn || !chatWindow || !bitmojiIndicator || !chatPrompt || !chatPromptOpen || !chatPromptClose) return;
   
   const API_URL = "https://taran-rag-backend.staranveer178.workers.dev"; 
 
   let chatSessionId = "sess_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
   let userName = null;
+  const chatPromptTimer = setTimeout(() => {
+    if (chatWindow.classList.contains("chat-hidden")) chatPrompt.hidden = false;
+  }, 12000);
+
+  function dismissChatPrompt() {
+    chatPrompt.hidden = true;
+    clearTimeout(chatPromptTimer);
+  }
 
   // Open/Close logic
   toggleBtn.addEventListener("click", () => {
+    dismissChatPrompt();
     toggleBtn.classList.add("chat-hidden");
     chatWindow.classList.remove("chat-hidden");
     chatInput.focus();
   });
+
+  chatPromptOpen.addEventListener("click", () => toggleBtn.click());
+  chatPromptClose.addEventListener("click", dismissChatPrompt);
   
   closeBtn.addEventListener("click", () => {
     chatWindow.classList.add("chat-hidden");
