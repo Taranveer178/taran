@@ -157,7 +157,7 @@ function initializeProjectSlider(sliderId, prevBtnId, nextBtnId, dotsContainerId
   resetInterval();
 }
 
-// Init sliders for the 3 distinct projects
+// Init sliders for featured projects
 initializeProjectSlider(
   document.querySelector('.slider-2-track').id = 'lmsSliderTrack',
   document.querySelector('.btn-slider-2.prev').id = 'lmsSliderPrev',
@@ -171,14 +171,6 @@ initializeProjectSlider(
   document.querySelector('.btn-slider-1.next').id = 'ragSliderNext',
   document.querySelector('.dots-1').id = 'ragSliderDots'
 );
-// For Project 3 (RoomSplit)
-initializeProjectSlider(
-  document.querySelector('.slider-3-track').id = 'roomSliderTrack',
-  document.querySelector('.btn-slider-3.prev').id = 'roomSliderPrev',
-  document.querySelector('.btn-slider-3.next').id = 'roomSliderNext',
-  document.querySelector('.dots-3').id = 'roomSliderDots'
-);
-
 // Mobile Infinite Slider Engine (Skills & Competencies)
 function initInfiniteSliderDots(sliderId, dotsContainerId) {
   const slider = document.getElementById(sliderId);
